@@ -17,24 +17,23 @@ class Solution {
         }
       }
       for (int i = 1; i < n; i++) {
-        int[] currentRow = costs[i].clone();
         int index = -1;
         int min = Integer.MAX_VALUE;
         int secMin = Integer.MAX_VALUE;
-        // fill currentRow[j]
+        // fill costs[i][j]
         for (int j = 0; j < k; j++) {
           if (j == prevMinIndex) {
-            currentRow[j] = currentRow[j] + prevSecondMin;
+            costs[i][j] = costs[i][j] + prevSecondMin;
           } else {
-            currentRow[j] = currentRow[j] + prevMin;
+            costs[i][j] = costs[i][j] + prevMin;
           }
 
-          if (currentRow[j] < min) {
+          if (costs[i][j] < min) {
             secMin = min;
-            min = currentRow[j];
+            min = costs[i][j];
             index = j;
-          } else if (currentRow[j] < secMin) {
-            secMin = currentRow[j];
+          } else if (costs[i][j] < secMin) {
+            secMin = costs[i][j];
           }
         }
         // update prevMin, prevSecondMin & prevMinIndex
