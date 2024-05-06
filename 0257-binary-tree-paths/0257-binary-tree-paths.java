@@ -15,27 +15,23 @@
  */
 class Solution {
     public List<String> binaryTreePaths(TreeNode root) {
-     if (root == null) {
-      return null;
-     }
-     List<String> left = binaryTreePaths(root.left);
-     List<String> right = binaryTreePaths(root.right);
-     List<String> ans = new ArrayList<>();
-     String result = String.valueOf(root.val);
-     if (left != null) {
-      for (String smallAns: left) {
-        ans.add(result + "->" + smallAns);
-      }
-     }
-     if (right != null) {
-      for (String smallAns: right) {
-        ans.add(result + "->" + smallAns);
-      }
-     }
-     if (ans.isEmpty()){
-      ans.add(result);
-     }
-      return ans;
+      List<String> paths = new ArrayList();
+      binaryTreePathsHelper(root, "", paths);
+      return paths;
     }
-  
+
+    public void binaryTreePathsHelper(TreeNode root, String path, List<String> paths) {
+      if (root == null) {
+        return;
+      }
+      path += Integer.toString(root.val);
+      if (root.left == null && root.right == null) {
+        paths.add(path);
+      } else {
+        path += "->";
+        binaryTreePathsHelper(root.left, path, paths);
+        binaryTreePathsHelper(root.right, path, paths);
+      }
+    }
+     
 }
