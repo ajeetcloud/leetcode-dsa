@@ -27,10 +27,15 @@ class Solution {
         ans.add(result + "->" + smallAns);
       }
      }
-     
-
-
+     if (right != null) {
+      for (String smallAns: right) {
+        ans.add(result + "->" + smallAns);
+      }
+     }
+     if (ans.isEmpty()){
+      ans.add(result);
+     }
+      return ans;
     }
-
-    
+  
 }
