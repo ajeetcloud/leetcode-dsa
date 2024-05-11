@@ -19,7 +19,7 @@ class Solution {
             storage[i] =  1;
           } else {
             storage[i] =  0;
-            
+            maxValue = Math.max(maxValue, i);
           }
         }
       }
