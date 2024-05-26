@@ -10,17 +10,68 @@
  */
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode dummy = new ListNode(0);
-        int carry = 0;
-        ListNode cur = dummy;
-        while (l1 != null || l2 != null || carry != 0) {
-            int s = (l1 == null ? 0 : l1.val) + (l2 == null ? 0 : l2.val) + carry;
-            carry = s / 10;
-            cur.next = new ListNode(s % 10);
-            cur = cur.next;
-            l1 = l1 == null ? null : l1.next;
-            l2 = l2 == null ? null : l2.next;
+      ListNode resultHead = null;
+      ListNode resultTail = null;
+      int carry= 0;
+      int sum = 0;
+      ListNode newNode;
+      while (l1 != null && l2 != null) {
+        sum = l1.val + l2.val + carry;
+        if (sum > 9) {
+          sum = sum % 10;
+          carry = 1;
+        } else {
+          carry = 0;
         }
-        return dummy.next;
+        newNode = new ListNode();
+        newNode.val = sum;
+        if (resultHead == null) {
+          resultHead = newNode;
+          resultTail = newNode;
+        } else {
+          resultTail.next = newNode;
+          resultTail = newNode;
+        }
+        l1 = l1.next;
+        l2 = l2.next;
+      }
+      while (l1 != null) {
+        sum = l1.val + carry;
+         if (sum > 9) {
+          sum = sum % 10;
+          carry = 1;
+        } else {
+          carry = 0;
+        }
+        newNode = new ListNode();
+        newNode.val = sum;
+        resultTail.next = newNode;
+        resultTail = newNode;
+        l1 = l1.next;
+      }
+
+      while (l2 != null) {
+        sum = l2.val + carry;
+         if (sum > 9) {
+          sum = sum % 10;
+          carry = 1;
+        } else {
+          carry = 0;
+        }
+        newNode = new ListNode();
+        newNode.val = sum;
+        resultTail.next = newNode;
+        resultTail = newNode;
+        l2 = l2.next;
+      }
+
+      if (carry == 1) {
+        newNode = new ListNode();
+        newNode.val = carry;
+        resultTail.next = newNode;
+      }
+
+
+      return resultHead;
     }
 }
