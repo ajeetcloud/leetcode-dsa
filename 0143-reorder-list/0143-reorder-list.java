@@ -9,32 +9,58 @@
  * }
  */
 class Solution {
-    public void reorderList(ListNode head) {
+  public void reorderList(ListNode head) {
 
-      Stack<ListNode> stack = new Stack<>();
-      ListNode temp = head;
-      while(temp != null) {
-        stack.push(temp);
-        temp = temp.next;
-      }
-      int stackSize = stack.size();
-      int count = stack.size() / 2;
-      ListNode current = head;
-      ListNode next = null;
-      ListNode last = null;
-      while (count != 0) {
-        next = current.next;
-        last = stack.pop();
-        current.next = last;
-        last.next = next;
-        current = next;
-        count--;
-      }
-      if (stackSize % 2 == 0) {
-        last.next = null;
-      } else {
-        current.next = null;
-      }
-      
+    // Find mid node
+    ListNode midNode = getMidNode(head);
+
+
+
+    // Reverse head2
+    ListNode rev = reverseNode(midNode);
+
+    // pick one from first and one from second
+    ListNode first = head;
+    ListNode sec = rev;
+    ListNode tmp = null;
+    while (sec.next != null) {
+      tmp = first.next;
+      first.next = sec;
+      first = tmp;
+
+      tmp = sec.next;
+      sec.next = first;
+      sec= tmp;
     }
+   
+  }
+
+  public ListNode getMidNode(ListNode head) {
+
+    ListNode slow = head;
+    ListNode fast = head;
+    while (fast != null && fast.next != null) {
+      slow = slow.next;
+      fast = fast.next.next;
+    }
+    return slow;
+  }
+
+  public ListNode reverseNode(ListNode head) {
+    if (head == null || head.next == null) {
+      return head;
+    }
+    ListNode c1 = head;
+    ListNode c2 = c1.next;
+    ListNode c3 = null;
+    c1.next = null;
+    while (c2 != null) {
+      c3 = c2.next;
+      c2.next = c1;
+      c1 = c2;
+      c2 = c3;
+    }
+    return c1;
+  }
+
 }
