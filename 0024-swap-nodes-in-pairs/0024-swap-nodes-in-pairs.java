@@ -14,18 +14,20 @@ class Solution {
     if (head == null || head.next == null) {
       return head;
     }
+    // dummy node helps us in handling corner cases with ease.
+    ListNode dummy = new ListNode();
+    dummy.next = head;
     ListNode c1 = head;
     ListNode c2 = c1.next;
     ListNode c3 = c2.next;
     ListNode newHead = c2;
-    ListNode prevC1 = null;
+    ListNode prevC1 = dummy;
     while (c2 != null) {
       c3 = c2.next;
       c2.next = c1;
       c1.next = c3;
-      if (prevC1 != null) {
-        prevC1.next = c2;
-      }
+
+      prevC1.next = c2;
       if (c3 == null) {
         break;
       }
@@ -33,6 +35,6 @@ class Solution {
       prevC1 = c1;
       c1 = c3;
     }
-    return newHead;
+    return dummy.next;
   }
 }
