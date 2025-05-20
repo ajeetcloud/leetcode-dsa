@@ -1,6 +1,6 @@
 class Solution {
 
-    public int minMeetingRooms(int[][] intervals) {
+    public int minMeetingRoomsMinHeap(int[][] intervals) {
       Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
       PriorityQueue<Integer> minHeap = new PriorityQueue<>();
       int i = 0;
@@ -17,7 +17,7 @@ class Solution {
     }
 
     // Greedy
-    public int minMeetingRoomsGreedy(int[][] intervals) {
+    public int minMeetingRooms(int[][] intervals) {
         int[]startTimes = new int[intervals.length];
         int[]endTimes = new int[intervals.length];
         for (int i = 0; i < intervals.length; i++) {
