@@ -12,7 +12,7 @@ class Solution {
             int start = meeting[0];
             int end = meeting[1];
             // update occupiedRooms & freeRooms
-            while (!occupiedRooms.isEmpty() && occupiedRooms.peek()[0] < start) {
+            while (!occupiedRooms.isEmpty() && occupiedRooms.peek()[0] <= start) {
                 int roomNumber = (int) occupiedRooms.poll()[1]; // roomNumber
                 freeRooms.offer(roomNumber);
             }
