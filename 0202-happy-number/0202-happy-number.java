@@ -1,25 +1,24 @@
 class Solution {
     public boolean isHappy(int n) {
-      int slow = n;
-      int fast = getSquaresSum(n);
-      while (slow != fast) {
+        int slow = n;
+        int fast = n;
+        do {
+            slow = getNext(slow);
+            fast = getNext(getNext(fast));
+        } while (slow != fast && fast != 1);
         if (fast == 1) {
-          return true;
+            return true;
         }
-        slow = getSquaresSum(slow);
-        fast = getSquaresSum(getSquaresSum(fast));
-      }
-      return fast == 1;
+        return false;
     }
 
-    public int getSquaresSum(int n) {
-      int sum = 0;
-      int digit = 0;
-      while (n > 0) {
-        digit = n % 10;
-        sum = sum + (digit * digit);
-        n = n / 10;
-      }
-      return sum;
+    public int getNext(int n) {
+        int sum = 0;
+        while (n > 0) {
+            int d = n % 10;
+            sum += d * d;
+            n = n / 10;
+        }
+        return sum;
     }
 }
