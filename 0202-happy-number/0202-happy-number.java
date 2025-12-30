@@ -6,10 +6,8 @@ class Solution {
             slow = getNext(slow);
             fast = getNext(getNext(fast));
         } while (slow != fast && fast != 1);
-        if (fast == 1) {
-            return true;
-        }
-        return false;
+        
+        return fast == 1;
     }
 
     public int getNext(int n) {
