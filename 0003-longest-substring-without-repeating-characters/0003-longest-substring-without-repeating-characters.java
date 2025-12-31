@@ -1,24 +1,25 @@
 class Solution {
     public int lengthOfLongestSubstring(String s) {
-      Map<Character, Integer> map = new HashMap<>();
-      int start = 0;
-      int end = 0;
-      int max = 0;
-      int endIndex = s.length() - 1;
-      int currentIndex = 0;
-      while (currentIndex <= endIndex) {
-        char currentChar = s.charAt(currentIndex);
-        if (map.containsKey(currentChar)) {
-          int prevIndex = map.get(currentChar);
-          if (prevIndex >= start) {
-            start = prevIndex + 1;
-          }
+        Map<Character, Integer> charIndexMap = new HashMap<>();
+        int start = 0;
+        int end = 0;
+        int max = 1;
+        if (s.length() == 0) {
+            return 0;
         }
-        end = currentIndex;
-        max = Math.max(max, end - start + 1);
-        map.put(currentChar, currentIndex);
-        currentIndex++;
-      }
-      return max;
+        char startChar = s.charAt(start);
+        charIndexMap.put(startChar, 0);
+        for (int i = 1; i < s.length(); i++) {
+            end = i;
+            char endChar = s.charAt(end);
+            if (charIndexMap.containsKey(endChar)) {
+                // Only move start if the duplicate is within current window
+                start = Math.max(start, charIndexMap.get(endChar) + 1);
+            }
+            charIndexMap.put(endChar, end);
+            int tempResult = end - start + 1;
+            max = Math.max(max, tempResult);
+        }
+        return max;
     }
 }
