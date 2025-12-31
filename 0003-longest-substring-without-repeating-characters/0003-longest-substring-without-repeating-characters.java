@@ -14,7 +14,10 @@ class Solution {
             char endChar = s.charAt(end);
             if (charIndexMap.containsKey(endChar)) {
                 // Only move start if the duplicate is within current window
-                start = Math.max(start, charIndexMap.get(endChar) + 1);
+                int prevIndex = charIndexMap.get(endChar);
+                if (prevIndex >= start) {
+                    start = prevIndex + 1;
+                }
             }
             charIndexMap.put(endChar, end);
             int tempResult = end - start + 1;
