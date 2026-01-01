@@ -1,28 +1,26 @@
 class Solution {
-  public int characterReplacement(String s, int k) {
-    int start = 0;
-    int end = 0;
-    int lastIndex = s.length() - 1;
-    int[] freqMap = new int[26];
-    int result = 0;
-    int maxFreq = 0;
-    int windowLength = 0;
-    int currentChar = 0;
-    int leavingChar = 0;
-    while (end <= lastIndex) {
-      currentChar = s.charAt(end) - 'A';
-      freqMap[currentChar]++;
-      maxFreq = Math.max(maxFreq, freqMap[currentChar]);
-      windowLength = end - start + 1;
-      if (windowLength - maxFreq <= k) {
-        result = Math.max(result, windowLength);
-      } else {
-        leavingChar = s.charAt(start) - 'A';
-        freqMap[leavingChar]--;
-        start++;
-      }
-      end++;
+    public int characterReplacement(String s, int k) {
+        Map<Character, Integer> freqMap = new HashMap<>();
+        int start = 0 ;
+        int end = 0;
+        int maxFreqInWindow = 0;
+        int maxWindowResult = 0;
+        while (end < s.length()) {
+            int windowLength = end - start + 1;
+            char currentChar = s.charAt(end);
+            freqMap.put(currentChar, freqMap.getOrDefault(currentChar, 0) + 1);
+            maxFreqInWindow = Math.max(maxFreqInWindow, freqMap.get(currentChar));
+            if (windowLength - maxFreqInWindow <= k) {
+                maxWindowResult = Math.max(maxWindowResult, windowLength);
+                end++;
+            } else {
+                char leavingChar = s.charAt(start);
+                int leavingCharFreq = freqMap.get(leavingChar);
+                freqMap.put(leavingChar, leavingCharFreq - 1);
+                start++;
+                end++;
+            }
+        }
+        return maxWindowResult;
     }
-    return result;
-  }
 }
