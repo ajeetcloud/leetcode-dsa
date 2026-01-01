@@ -2,35 +2,36 @@ class Solution {
     public List<String> findRepeatedDnaSequences(String s) {
         Set<String> result = new HashSet<>();
         Set<Integer> set = new HashSet<>();
+        int k = 10;
         int start = 0;
         int end = 9;
-        int sum = 0;
+        int hash = 0;
         if (s.length() < 10) {
             return new ArrayList<>();
         }
-        // calculate the sum for 1st window
+        // calculate the hash for 1st window
         int power = 9;
         for (int i = start; i <= end; i++) {
             char c = s.charAt(i);
-            sum += getNum(c) * Math.pow(4, power);
+            hash += getNum(c) * Math.pow(4, power);
             power--;
         }
-        set.add(sum);
+        set.add(hash);
         start = 0;
         for (end = 10; end < s.length(); end++) {
             char leavingChar = s.charAt(start);
             start++;
             int leavingNum = getNum(leavingChar);
-            sum = sum - (leavingNum * (int)Math.pow(4, 9));
-            sum = sum * 4;
+            hash = hash - (leavingNum * (int)Math.pow(4, k - 1));
+            hash = hash * 4;
             char incomingChar = s.charAt(end);
             int incomingNum = getNum(incomingChar);
-            sum = sum + incomingNum;
-            if (set.contains(sum)) {
-                String s1 = s.substring(start, start + 10);
+            hash = hash + incomingNum;
+            if (set.contains(hash)) {
+                String s1 = s.substring(start, start + k);
                 result.add(s1);
             }
-            set.add(sum);
+            set.add(hash);
         }
         return new ArrayList<>(result);
     }
