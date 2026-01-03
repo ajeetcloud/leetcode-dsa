@@ -1,38 +1,43 @@
 class Solution {
     public int[][] insert(int[][] intervals, int[] newInterval) {
-      List<int[]> list = new ArrayList<>();
-      int find = newInterval[0];
-      int left = 0;
-      int right = intervals.length - 1;
-      while (left <= right) {
-        int mid = (left + right) / 2;
-        if (intervals[mid][0] < find) {
-          left = mid + 1;
-        } else {
-          right = mid - 1;
+        int start = 0;
+        int end = intervals.length - 1;
+        while (start <= end) {
+            int mid = (start + end) / 2;
+            if (intervals[mid][0] < newInterval[0]) {
+                start = mid + 1;
+            } else {
+                end = mid - 1;
+            }
         }
-      }
-      // left is the insert position
-      for (int i = 0; i < left; i++) {
-        list.add(intervals[i]);
-      }
-      list.add(newInterval);
-      for (int i = left; i < intervals.length; i++) {  
-        list.add(intervals[i]);
-      }
-      // merge interval
-      LinkedList<int[]> result = new LinkedList<>();
-      result.add(list.get(0));
-      for (int i = 1; i < list.size(); i++) {
-        int[] interval = list.get(i);
-        int[] lastResult = result.getLast();
-        if (interval[0] <= lastResult[1]) {
-          // merge
-          lastResult[1] = Math.max(lastResult[1], interval[1]);
-        } else {
-          result.add(interval);
+        // insert at start position
+        List<int[]> list = new ArrayList<>();
+        for (int i = 0; i < start; i++) {
+            list.add(intervals[i]);
         }
-      }
-      return result.toArray(new int[result.size()][]);
+        list.add(newInterval);
+        for (int i = start; i < intervals.length; i++) {
+            list.add(intervals[i]);
+        }
+        // invoke merge interval
+        return mergeInterval(list.toArray(new int[list.size()][]));
+    }
+
+    public int[][] mergeInterval(int[][] intervals) {
+        LinkedList<int[]>result = new LinkedList<>();
+        result.add(intervals[0]);
+        int i = 1;
+        while (i < intervals.length) {
+            int[] lastInserted = result.getLast();
+            int[] currentInterval = intervals[i];
+            if (lastInserted[1] >= currentInterval[0]) {
+                // merge
+                lastInserted[1] = Math.max(lastInserted[1], currentInterval[1]);
+            } else {
+                result.add(currentInterval);
+            }
+            i++;
+        }
+        return result.toArray(new int[result.size()][]);
     }
 }
