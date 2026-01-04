@@ -8,7 +8,7 @@ class Solution {
         int maxFreq = freq[25];
         int gapWindows = maxFreq - 1;
         int idleSlots = gapWindows * n;
-        for (int i = 24; i >= 0; i--) {
+        for (int i = 24; i >= 0 && freq[i] > 0; i--) {
             idleSlots = idleSlots - Math.min(gapWindows, freq[i]);
             if (idleSlots < 0) {
                 idleSlots = 0;
