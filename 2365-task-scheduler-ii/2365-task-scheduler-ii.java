@@ -1,23 +1,22 @@
 class Solution {
     public long taskSchedulerII(int[] tasks, int space) {
-        Map<Integer, Integer> taskCompletionMap = new HashMap<>();
-        int days = 0;
-        int nextValidDay = 0;
-        for (int i = 0; i < tasks.length; i++) {
-            days++;
-            int currentDay = days;
-            int currentTask = tasks[i];
-            if (taskCompletionMap.containsKey(currentTask)) {
-                nextValidDay = taskCompletionMap.get(currentTask) + space + 1;
-                if (currentDay < nextValidDay) {
-                    i--;
-                } else {
-                    taskCompletionMap.put(currentTask, currentDay);
-                }  
-            } else {
-                taskCompletionMap.put(currentTask, currentDay);
+        Map<Integer, Long> lastPerformedDay = new HashMap<>();
+        long currentDay = 0;
+        for (int task: tasks) {
+            // Try to do it the next day
+            currentDay++;
+
+            // If we have done this task, check if we need to wait
+            if (lastPerformedDay.containsKey(task)) {
+                long nextAvailableDay = lastPerformedDay.get(task) + space + 1;
+
+                // If current day is too earl, jump to next available day
+                currentDay = Math.max(currentDay, nextAvailableDay);
             }
+
+            // Record when we performed this task
+            lastPerformedDay.put(task, currentDay);
         }
-        return days;
+        return currentDay;
     }
 }
