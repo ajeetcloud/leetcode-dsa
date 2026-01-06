@@ -10,7 +10,7 @@ class Solution {
             if (lastPerformedDay.containsKey(task)) {
                 long nextAvailableDay = lastPerformedDay.get(task) + space + 1;
 
-                // If current day is too earl, jump to next available day
+                // If current day is too early, jump to next available day
                 currentDay = Math.max(currentDay, nextAvailableDay);
             }
 
