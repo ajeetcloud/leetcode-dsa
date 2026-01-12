@@ -11,12 +11,12 @@ class Solution {
             int minEndTimeHeap = minHeap.peek();
             int currentStartTime =  currentInterval[0];
             if (minEndTimeHeap > currentStartTime) {
-                result++;
+                result++; // need a new room
             } else {
-                minHeap.poll();
+                minHeap.poll(); // don't need a new room
             }
             minHeap.offer(currentInterval[1]);
         }
-        return minHeap.size();
+        return minHeap.size(); // can return result also
     }
 }
