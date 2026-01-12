@@ -1,5 +1,5 @@
 class Solution {
-    
+
     public int minMeetingRooms1(int[][] intervals) {
 
         Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
@@ -10,7 +10,7 @@ class Solution {
         for (int i = 1; i < intervals.length; i++) {
             int[] currentInterval = intervals[i];
             int minEndTimeHeap = minHeap.peek();
-            int currentStartTime =  currentInterval[0];
+            int currentStartTime = currentInterval[0];
             // find the maximum overlap, that is the answer
             if (minEndTimeHeap > currentStartTime) {
                 result++; // need a new room
@@ -22,7 +22,7 @@ class Solution {
         return minHeap.size(); // can return result also
     }
 
-     public int minMeetingRooms(int[][] intervals) {
+    public int minMeetingRooms(int[][] intervals) {
         int[] startTimes = new int[intervals.length];
         int[] endTimes = new int[intervals.length];
         for (int i = 0; i < intervals.length; i++) {
@@ -32,14 +32,19 @@ class Solution {
         Arrays.sort(startTimes);
         Arrays.sort(endTimes);
         int rooms = 0;
-        int j = 0;
-        for (int i = 0; i < startTimes.length; i++) {
-            if (startTimes[i] < endTimes[j]) {
+        int s = 0;
+        int e = 0;
+        int maxRooms = 0;
+        while (s < intervals.length) {
+            if (startTimes[s] < endTimes[e]) {
                 rooms++;
+                s++;
             } else {
-                j++;
+                rooms--;
+                e++;
             }
+            maxRooms = Math.max(maxRooms, rooms);
         }
-        return rooms;
-     }
+        return maxRooms;
+    }
 }
