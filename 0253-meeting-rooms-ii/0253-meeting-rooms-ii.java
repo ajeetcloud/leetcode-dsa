@@ -17,6 +17,6 @@ class Solution {
             }
             minHeap.offer(currentInterval[1]);
         }
-        return result;
+        return minHeap.size();
     }
 }
