@@ -1,44 +1,60 @@
+class RoomInfo {
+
+    long meetingEndtime;
+    int roomNumber;
+
+    public RoomInfo(long meetingEndtime, int roomNumber) {
+        this.meetingEndtime = meetingEndtime;
+        this.roomNumber = roomNumber;
+    }
+}
+
+
 class Solution {
     public int mostBooked(int n, int[][] meetings) {
+        int[] freqMap = new int[n];
+        Arrays.sort(meetings, (a, b) -> Integer.compare(a[0], b[0]));
+        PriorityQueue<Integer> availableRooms = new PriorityQueue<>();
+        PriorityQueue<RoomInfo> usedRooms = new PriorityQueue<>(
+            (a, b) -> a.meetingEndtime != b.meetingEndtime 
+            ? Long.compare(a.meetingEndtime, b.meetingEndtime)
+            : Integer.compare(a.roomNumber, b.roomNumber));
 
-        PriorityQueue<Integer> freeRooms = new PriorityQueue<>(); // stores room numbers
-        PriorityQueue<int[]> occupiedRooms = new PriorityQueue<>((a,b) -> a[0] != b[0] ? a[0] - b[0] : a[1] - b[1]); // stores availability(end) time, room number
-        int[] meetingCount = new int[n];
-        Arrays.sort(meetings, (a,b) -> a[0] != b[0] ? a[0] - b[0] : a[1] - b[1]);
         for (int i = 0; i < n; i++) {
-            freeRooms.offer(i);
+            availableRooms.offer(i);
         }
-        for (int[] meeting: meetings) {
-            int start = meeting[0];
-            int end = meeting[1];
-            // update occupiedRooms & freeRooms
-            while (!occupiedRooms.isEmpty() && occupiedRooms.peek()[0] <= start) {
-                int roomNumber = (int) occupiedRooms.poll()[1]; // roomNumber
-                freeRooms.offer(roomNumber);
+        for (int i = 0; i < meetings.length; i++) {
+            long currentStart = meetings[i][0];
+            long currentEnd = meetings[i][1];
+            // freeing up used rooms is important
+            while (!usedRooms.isEmpty() && currentStart >= usedRooms.peek().meetingEndtime) {
+                RoomInfo roomToBeMadeAvailable = usedRooms.poll();
+                availableRooms.offer(roomToBeMadeAvailable.roomNumber);
             }
-            if (!freeRooms.isEmpty()) {
-                int roomNumber = freeRooms.poll();
-                occupiedRooms.offer(new int[]{end, roomNumber});
-                meetingCount[roomNumber]++;
+            if (!availableRooms.isEmpty()) {
+                int roomNo = availableRooms.poll();
+                usedRooms.offer(new RoomInfo(currentEnd, roomNo));
+                freqMap[roomNo]++;
             } else {
-                int[] takeout = occupiedRooms.poll();
-                int takeoutEndtime = takeout[0];
-                int takeoutRoom = takeout[1];
-
-                int newEndtime = takeoutEndtime + (end - start);
-                occupiedRooms.offer(new int[]{newEndtime, takeoutRoom});
-                meetingCount[takeoutRoom]++;
+                // check for earliest available room
+                if (!usedRooms.isEmpty()) {
+                    RoomInfo nextAvailableRoom = usedRooms.poll();
+                    int nextAvailableRoomNo = nextAvailableRoom.roomNumber;
+                    long nextMeetingEndtime = nextAvailableRoom.meetingEndtime;
+                    RoomInfo currentMeeting = new RoomInfo(nextMeetingEndtime + currentEnd - currentStart, nextAvailableRoomNo);
+                    usedRooms.offer(currentMeeting);
+                    freqMap[nextAvailableRoomNo]++;
+                }
             }
         }
-
-        int maxCount = 0;
-        int resultRoom = 0;
-        for (int i = 0; i < meetingCount.length; i++) {
-            if (meetingCount[i] > maxCount) {
-                maxCount = meetingCount[i];
-                resultRoom = i;
+        int maxMeetings = 0;
+        int roomNumberResult = -1;
+        for (int i = 0; i < freqMap.length; i++) {
+            if (freqMap[i] > maxMeetings) {
+                maxMeetings = freqMap[i];
+                roomNumberResult = i;
             }
         }
-        return resultRoom;
+        return roomNumberResult;
     }
 }
