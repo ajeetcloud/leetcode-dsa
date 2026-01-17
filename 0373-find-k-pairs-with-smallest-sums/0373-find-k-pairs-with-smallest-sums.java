@@ -5,11 +5,14 @@ class Solution {
 
         List<List<Integer>> result = new ArrayList<>();
         Set<Pair> seen = new HashSet<>();
+
         PriorityQueue<Triplet> pq = new PriorityQueue<>((a,b) -> Integer.compare(a.sum(), b.sum()));
         Triplet firstAnswer = new Triplet(nums1[0] + nums2[0], 0 , 0);
+
         pq.offer(firstAnswer);
         seen.add(new Pair<Integer, Integer>(0, 0));
         int count = 0;
+        
         while (!pq.isEmpty() && count < k) {
             Triplet takeout = pq.poll();
             count++;
