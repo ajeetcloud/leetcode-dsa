@@ -13,24 +13,20 @@ class Solution {
         while (!pq.isEmpty() && count < k) {
             Triplet takeout = pq.poll();
             count++;
-            int takeout_i = takeout.i();
-            int takeout_j = takeout.j();
+            int i = takeout.i();
+            int j = takeout.j();
 
-            result.add(Arrays.asList(nums1[takeout_i], nums2[takeout_j]));
+            result.add(Arrays.asList(nums1[i], nums2[j]));
 
-            if (takeout_j + 1 < nums2.length) {
-                Triplet ans1 = new Triplet(nums1[takeout_i] + nums2[takeout_j + 1], takeout_i, takeout_j + 1);
-                if (!seen.contains(takeout_i + "," + (takeout_j + 1))) {
-                    pq.offer(ans1); 
-                    seen.add(takeout_i + "," + (takeout_j + 1));
-                }  
+            if (j + 1 < nums2.length && !seen.contains(i + "," + (j + 1))) {
+                Triplet ans1 = new Triplet(nums1[i] + nums2[j + 1], i, j + 1);
+                pq.offer(ans1); 
+                seen.add(i + "," + (j + 1)); 
             }     
-            if (takeout_i + 1 < nums1.length) {
-                Triplet ans2 = new Triplet(nums1[takeout_i + 1] + nums2[takeout_j], takeout_i + 1, takeout_j);
-                if (!seen.contains((takeout_i + 1) + "," + takeout_j)) {
-                    pq.offer(ans2);
-                    seen.add((takeout_i + 1) + "," + takeout_j);     
-                }
+            if (i + 1 < nums1.length && !seen.contains((i + 1) + "," + j)) {
+                Triplet ans2 = new Triplet(nums1[i + 1] + nums2[j], i + 1, j);
+                pq.offer(ans2);
+                seen.add((i + 1) + "," + j);     
             } 
         }
         return result;
