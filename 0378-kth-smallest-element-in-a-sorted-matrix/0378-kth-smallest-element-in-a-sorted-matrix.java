@@ -7,7 +7,7 @@ class Solution {
         int n = matrix.length;
 
         // Optimised version of solution
-        // Rather than moving right and down, with this we just jhave to move right
+        // Rather than moving right and down, with this we just have to move right
         // No need for visited Set
         for (int i = 0; i < n; i++) {
             Triplet triplet = new Triplet(matrix[i][0], i, 0);
