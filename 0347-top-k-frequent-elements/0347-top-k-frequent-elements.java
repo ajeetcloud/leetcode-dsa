@@ -1,7 +1,7 @@
 class Solution {
 
     // Bucket Sort
-    public int[] topKFrequent(int[] nums, int k) {
+    public int[] topKFrequent1(int[] nums, int k) {
 
         Map<Integer, Integer> freqMap = new HashMap<>();
         for (int num: nums) {
@@ -27,7 +27,7 @@ class Solution {
         return result;
     }
 
-    public int[] topKFrequent1(int[] nums, int k) {
+    public int[] topKFrequent(int[] nums, int k) {
 
         if (k == nums.length) {
             return nums;
