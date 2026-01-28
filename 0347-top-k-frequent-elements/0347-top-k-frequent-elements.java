@@ -1,6 +1,6 @@
 class Solution {
 
-    // Bucket Sort
+    // Bucket Sort Approach
     public int[] topKFrequent1(int[] nums, int k) {
 
         Map<Integer, Integer> freqMap = new HashMap<>();
@@ -27,6 +27,7 @@ class Solution {
         return result;
     }
 
+    // MinHeap Approach
     public int[] topKFrequent(int[] nums, int k) {
 
         if (k == nums.length) {
