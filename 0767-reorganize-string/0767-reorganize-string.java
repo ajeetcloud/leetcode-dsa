@@ -8,6 +8,13 @@ class Solution {
             char c = s.charAt(i);
             freqMap.put(c, freqMap.getOrDefault(c, 0) + 1);
         }
+        int maxAllowed = (s.length() + 1) / 2;
+        for (int f : freqMap.values()) {
+            if (f > maxAllowed) {
+                return "";
+            }
+        }
+
         PriorityQueue<Pair> freqMaxHeap = new PriorityQueue<>((a, b) -> Integer.compare(b.freq(), a.freq()));
         for (char c: freqMap.keySet()) {
             Pair pair = new Pair(c, freqMap.get(c));
