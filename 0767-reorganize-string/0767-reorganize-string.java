@@ -4,15 +4,14 @@ class Solution {
     public String reorganizeString(String s) {
 
         Map<Character, Integer> freqMap = new HashMap<>();
+        int maxAllowed = (s.length() + 1) / 2;
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
-            freqMap.put(c, freqMap.getOrDefault(c, 0) + 1);
-        }
-        int maxAllowed = (s.length() + 1) / 2;
-        for (int f : freqMap.values()) {
-            if (f > maxAllowed) {
+            int freqValue = freqMap.getOrDefault(c, 0) + 1;
+            if (freqValue > maxAllowed) {
                 return "";
             }
+            freqMap.put(c, freqValue);
         }
 
         PriorityQueue<Pair> freqMaxHeap = new PriorityQueue<>((a, b) -> Integer.compare(b.freq(), a.freq()));
@@ -21,36 +20,22 @@ class Solution {
             freqMaxHeap.offer(pair);
         }
 
-        String result = "";
-        char currentChar = '-';
-
+        StringBuilder result = new StringBuilder();
+        Pair prev = null;
         while (!freqMaxHeap.isEmpty()) {
             Pair takeout = freqMaxHeap.poll();
-            char newChar = takeout.c();
-            int newCharFreq = takeout.freq();
-            if (currentChar != newChar) {
-                result += newChar;
-                currentChar = newChar;
-                newCharFreq = newCharFreq - 1;
-                if (newCharFreq > 0) {
-                    freqMaxHeap.offer(new Pair(newChar, newCharFreq));
-                }
-            } else {
-                if (freqMaxHeap.isEmpty()) {
-                    return "";
-                }
-                Pair nextTakeout = freqMaxHeap.poll();
-                char nextChar = nextTakeout.c();
-                int nextCharFreq = nextTakeout.freq();
-                result += nextChar;
-                currentChar = nextChar;
-                nextCharFreq = nextCharFreq - 1;
-                if (nextCharFreq > 0) {
-                    freqMaxHeap.offer(new Pair(nextChar, nextCharFreq));
-                }
-                freqMaxHeap.offer(takeout);
+            int takeoutFreq = takeout.freq();
+            result.append(takeout.c());
+
+            if (prev != null) {
+                freqMaxHeap.offer(prev);
+                prev = null;
+            }
+
+            if (takeoutFreq - 1 > 0) {
+                prev = new Pair(takeout.c(), takeoutFreq - 1);
             }
         }
-        return result;
+        return result.toString();
     }
 }
