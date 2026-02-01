@@ -3,24 +3,13 @@ class Solution {
 
         int start = 0;
         int end = nums.length - 1;
-        
-        int n = nums.length;
-        int left = 0, right = n - 1;
-        while (left <= right) {
-            int mid = (left + right) / 2;
-            if (nums[mid] > nums[n - 1]) {
-                left = mid + 1;
-            } else {
-                right = mid - 1;
-            }
-        }
+        int inflectionPoint = getInflectionPoint(nums);
 
-
-        int answer = doBinarySearch(nums, 0, left - 1, target);
+        int answer = doBinarySearch(nums, 0, inflectionPoint - 1, target);
         if (answer != -1) {
             return answer;
         }
-        return doBinarySearch(nums, left, end, target);
+        return doBinarySearch(nums, inflectionPoint, end, target);
     
     }
 
@@ -32,11 +21,11 @@ class Solution {
         while (startIndex <= endIndex) {
             int mid = startIndex + (endIndex - startIndex) / 2;
 
-            if (nums[mid] > nums[endIndex]) {
+            if (nums[mid] > nums[nums.length - 1]) {
                 startIndex = mid + 1;
             } 
             else {
-                endIndex = mid;
+                endIndex = mid - 1;
             }
         }
         return startIndex;
