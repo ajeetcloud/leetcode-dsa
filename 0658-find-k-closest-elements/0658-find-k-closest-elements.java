@@ -15,7 +15,6 @@ class Solution {
         }
         int closestIndex = startIndex;
 
-        int count = k - 1;
         int i = closestIndex - 1;
         int j = closestIndex;
         while (j - i - 1 < k) {
