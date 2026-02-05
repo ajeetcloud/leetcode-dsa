@@ -21,7 +21,7 @@ class Solution {
         while (j - i - 1 < k) {
             if (i < 0) {
                 j++;
-            } else if (j >= arr.length) {
+            } else if (j > arr.length - 1) {
                 i--;
             } else {
                 int left = arr[i];
@@ -32,9 +32,7 @@ class Solution {
                     j++;
                 }
             }
-
         }
-
         for (int start = i + 1; start < j; start++) {
             result.add(arr[start]);
         }
