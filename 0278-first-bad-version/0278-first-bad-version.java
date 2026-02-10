@@ -7,14 +7,14 @@ public class Solution extends VersionControl {
         int startIndex = 1;
         int endIndex = n;
 
-        while (startIndex <= endIndex) {
+        while (startIndex < endIndex) {
             int mid = startIndex + (endIndex - startIndex ) / 2;
             boolean isBad = isBadVersion(mid);
             if (!isBad) {
                 startIndex = mid + 1;
             } 
             else {
-                endIndex = mid - 1;
+                endIndex = mid;
             }
         }
         return startIndex;
