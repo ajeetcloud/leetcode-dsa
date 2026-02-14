@@ -5,11 +5,11 @@ class Solution {
             return new int[]{-1, -1};
         }
 
-        return new int[]{getStartIndex(nums, target), getEndIndex(nums, target)};
+        return new int[]{getStartIndex(nums, target, true), getStartIndex(nums, target, false)};
     }
 
 
-    private int getStartIndex(int[] nums, int target) {
+    private int getStartIndex(int[] nums, int target, boolean findFirst) {
 
         int startIndex = 0;
         int endIndex = nums.length - 1;
@@ -17,7 +17,7 @@ class Solution {
         while (startIndex <= endIndex) {
             int mid = startIndex + (endIndex - startIndex) / 2;
 
-            if (nums[mid] >= target) {
+            if ((nums[mid] >= target && findFirst) || (nums[mid] > target && !findFirst)) {
                 endIndex = mid - 1;
             }
             else {
@@ -25,30 +25,14 @@ class Solution {
             }
 
         }
-        if (startIndex < nums.length && nums[startIndex] == target) {
-            return startIndex;
-        }
-        return -1;
-    }
-
-    private int getEndIndex(int[] nums, int target) {
-
-        int startIndex = 0;
-        int endIndex = nums.length - 1;
-
-        while (startIndex <= endIndex) {
-            int mid = startIndex + (endIndex - startIndex) / 2;
-
-            if (nums[mid] <= target) {
-                startIndex = mid + 1;
+        if (findFirst) {
+            if (startIndex < nums.length && nums[startIndex] == target) {
+                return startIndex;
             }
-            else {
-                endIndex = mid - 1;
+        } else {
+            if (endIndex >= 0 && nums[endIndex] == target) {
+                return endIndex;
             }
-
-        }
-        if (endIndex >= 0 && nums[endIndex] == target) {
-            return endIndex;
         }
         return -1;
     }
