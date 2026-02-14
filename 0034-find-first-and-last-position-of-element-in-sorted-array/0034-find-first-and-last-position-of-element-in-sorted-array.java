@@ -33,7 +33,7 @@ class Solution {
             }
 
         }
-        if (nums[startIndex] == target) {
+        if (startIndex < nums.length && nums[startIndex] == target) {
             return startIndex;
         }
         return -1;
@@ -55,7 +55,7 @@ class Solution {
             }
 
         }
-        if (nums[endIndex] == target) {
+        if (endIndex >= 0 && nums[endIndex] == target) {
             return endIndex;
         }
         return -1;
