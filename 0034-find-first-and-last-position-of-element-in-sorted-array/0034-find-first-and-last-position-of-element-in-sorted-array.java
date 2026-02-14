@@ -5,11 +5,16 @@ class Solution {
             return new int[]{-1, -1};
         }
 
-        return new int[]{getStartIndex(nums, target, true), getStartIndex(nums, target, false)};
+        return new int[]{ getBoundary(nums, target, true), getBoundary(nums, target, false) };
+    }
+
+    private int getOptimisedIndex(int[] nums, int target, boolean findFirst) {
+
+        return -1;
     }
 
 
-    private int getStartIndex(int[] nums, int target, boolean findFirst) {
+    private int getBoundary(int[] nums, int target, boolean findFirst) {
 
         int startIndex = 0;
         int endIndex = nums.length - 1;
