@@ -17,7 +17,7 @@ class Solution {
         while (startIndex <= endIndex) {
             int mid = startIndex + (endIndex - startIndex) / 2;
 
-            if ((nums[mid] >= target && findFirst) || (nums[mid] > target && !findFirst)) {
+            if ((nums[mid] == target && findFirst) || (nums[mid] > target)) {
                 endIndex = mid - 1;
             }
             else {
