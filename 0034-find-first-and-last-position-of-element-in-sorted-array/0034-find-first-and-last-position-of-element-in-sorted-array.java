@@ -8,6 +8,7 @@ class Solution {
         return new int[]{ getOptimisedIndex(nums, target, true), getOptimisedIndex(nums, target, false) };
     }
 
+    // This is more intuitive solution
     private int getOptimisedIndex(int[] nums, int target, boolean findFirst) {
 
         int startIndex = 0;
@@ -43,6 +44,9 @@ class Solution {
         return -1;
     }
 
+    // This solution is built after creating individual solutions
+    // for finding leftmost boundary and rightmost boundary
+    // and combining both functions into 1 by combining the conditions
     private int getBoundary(int[] nums, int target, boolean findFirst) {
 
         int startIndex = 0;
