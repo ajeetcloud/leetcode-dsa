@@ -4,14 +4,7 @@ class Solution {
         if (nums.length == 0) {
             return new int[]{-1, -1};
         }
-        if (nums.length == 1) {
-            if (nums[0] == target) {
-                return new int[]{0, 0};
-            } 
-            else {
-                return new int[]{-1, -1};
-            }
-        }
+
 
         return new int[]{getStartIndex(nums, target), getEndIndex(nums, target)};
     }
