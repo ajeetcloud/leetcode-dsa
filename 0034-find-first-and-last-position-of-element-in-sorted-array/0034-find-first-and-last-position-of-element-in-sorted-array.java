@@ -5,7 +5,6 @@ class Solution {
             return new int[]{-1, -1};
         }
 
-
         return new int[]{getStartIndex(nums, target), getEndIndex(nums, target)};
     }
 
@@ -44,7 +43,7 @@ class Solution {
                 startIndex = mid + 1;
             }
             else {
-                endIndex = endIndex - 1;
+                endIndex = mid - 1;
             }
 
         }
