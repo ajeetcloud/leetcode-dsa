@@ -17,8 +17,8 @@ class Solution {
         while (startIndex <= endIndex) {
 
             int mid = startIndex + (endIndex - startIndex ) / 2;
-            if (nums[mid] == target) {
 
+            if (nums[mid] == target) {
                 if (findFirst) {
                     // Finds first occurrence
                     if (mid == 0 || nums[mid - 1] != target) {
