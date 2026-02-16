@@ -15,6 +15,7 @@ class Solution {
 
         while (startIndex <= endIndex) {
             int mid = startIndex + (endIndex - startIndex) / 2;
+            // Below are 2 conditions to identify smallest in rotated array
             if (nums[mid] > nums[mid + 1]) {
                 return nums[mid + 1];
             }
