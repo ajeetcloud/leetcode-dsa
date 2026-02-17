@@ -2,12 +2,12 @@ class Solution {
 
     public List<List<Integer>> subsets(int[] nums) {
 
-        return getSubsets(nums, 0, nums.length - 1);
+        // return getSubsets(nums, 0, nums.length - 1);
 
-        // List<List<Integer>> result = new ArrayList<>();
-        // backtrack(nums, 0, new ArrayList<>(), result);
+        List<List<Integer>> result = new ArrayList<>();
+        backtrack(nums, 0, new ArrayList<>(), result);
 
-        // return result;
+        return result;
     }
 
 
