@@ -1,13 +1,13 @@
 class Solution {
 
     public List<List<Integer>> subsets(int[] nums) {
-        
-        //return getSubsets(nums, 0, nums.length - 1);
 
-        List<List<Integer>> result = new ArrayList<>();
-        backtrack(nums, 0, new ArrayList<>(), result);
+        return getSubsets(nums, 0, nums.length - 1);
 
-        return result;
+        // List<List<Integer>> result = new ArrayList<>();
+        // backtrack(nums, 0, new ArrayList<>(), result);
+
+        // return result;
     }
 
 
