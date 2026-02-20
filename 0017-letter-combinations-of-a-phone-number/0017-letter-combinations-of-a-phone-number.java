@@ -3,7 +3,7 @@ class Solution {
         
         List<String> result = new ArrayList<>();
         backtrackCombinations(digits, 0, getMap(), new StringBuilder(), result);
-
+        
         return result;
     }
 
@@ -24,7 +24,7 @@ class Solution {
 
     }
 
-    public Map<Character, String> getMap() {
+    public Map getMap() {
 
         Map<Character, String> map = new HashMap<>();
         map.put('2', "abc");
