@@ -18,10 +18,14 @@ class Solution {
         }
 
         for (int i = startIndex; i < candidates.length; i++) {
-
             int num = candidates[i];
+            // Choose
             temp.add(num);
+
+            // Rercurse
             backtrack(candidates, temp, result, target - num, i);
+
+            // Unchoose
             temp.remove(temp.size() - 1);
         }
 
