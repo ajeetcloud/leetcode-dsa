@@ -30,12 +30,13 @@ class Solution {
             digits[largeIndex] = temp;
 
             // create number
-            int result = 0;
-            for (int i = 0; i < digits.length; i++) {
-                int digit = digits[i] - '0';
-                result = (result * 10) + digit;
-            } 
-            return result;  
+            // int result = 0;
+            // for (int i = 0; i < digits.length; i++) {
+            //     int digit = digits[i] - '0';
+            //     result = (result * 10) + digit;
+            // } 
+            //return result;  
+            return Integer.parseInt(new String(digits));
         }
  
         return num;
