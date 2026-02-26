@@ -1,5 +1,81 @@
 class Solution {
+
+    // One pass, space optimal solution
     public int maximumSwap(int num) {
+
+        char digits[] = String.valueOf(num).toCharArray();
+
+        int smallIndex = -1; // stores index of small position(left)
+
+        int maxRightIndex = digits.length - 1;
+        int largeIndex = digits.length - 1; // stores index of large position(right)
+        int maxNumTillNow = digits[largeIndex] - '0'; // assume rightmost is my max
+
+        for (int i = largeIndex - 1; i >= 0; i--) {
+            int currNum = digits[i] - '0';
+            if (currNum > maxNumTillNow) {
+                maxNumTillNow = currNum;
+                maxRightIndex = i;
+            } else if (currNum < maxNumTillNow) {
+                // swapping candidate found
+                smallIndex = i;
+                largeIndex = maxRightIndex;
+            }
+        }
+
+        if (smallIndex != -1) {
+            // swap between smallIndex & largeIndex
+            char temp = digits[smallIndex];
+            digits[smallIndex] = digits[largeIndex];
+            digits[largeIndex] = temp;
+
+            // create number
+            int result = 0;
+            for (int i = 0; i < digits.length; i++) {
+                int digit = digits[i] - '0';
+                result = (result * 10) + digit;
+            } 
+            return result;  
+        }
+ 
+        return num;
+    }
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Not sapce optimal
+    public int maximumSwap1(int num) {
 
         char[] digits = Integer.toString(num).toCharArray();
 
