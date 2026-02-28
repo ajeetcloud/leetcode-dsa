@@ -1,6 +1,6 @@
 class Solution {
     public boolean exist(char[][] board, String word) {
-        
+
         int row = 0;
         int col = 0;
         int index = 0;
@@ -15,7 +15,6 @@ class Solution {
                 }
             }
         }
-
         return false;
     }
 
@@ -43,9 +42,9 @@ class Solution {
 
         // Recurse
         boolean found = backtrack(board, row + 1, col, rows, cols, word, index + 1)
-        || backtrack(board, row, col + 1, rows, cols, word, index + 1)
-        || backtrack(board, row - 1, col, rows, cols, word, index + 1)
-        || backtrack(board, row, col - 1, rows, cols, word, index + 1);
+                || backtrack(board, row, col + 1, rows, cols, word, index + 1)
+                || backtrack(board, row - 1, col, rows, cols, word, index + 1)
+                || backtrack(board, row, col - 1, rows, cols, word, index + 1);
 
         // Unchoose
         board[row][col] = saved;
