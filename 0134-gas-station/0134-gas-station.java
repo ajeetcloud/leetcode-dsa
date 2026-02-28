@@ -15,7 +15,7 @@ class Solution {
             }
         }
 
-        // just for checking if solution exists, (total gas - total cost) >= 0, then solution exists 
+        // Just for checking if solution exists, (total gas - total cost) >= 0, then solution exists 
         if (totalSurplus >= 0) {
             return candidate;
         }
