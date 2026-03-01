@@ -16,6 +16,12 @@ class Solution {
             result.add(new ArrayList<>(temp));
             return;
         }
+        
+         int need = k - temp.size();
+         int remain = n - startIndex + 1;
+         if (remain < need) {
+            return; // prune!
+         }
 
         for (int i = startIndex; i <= n; i++) {
             temp.add(i); // Choose
