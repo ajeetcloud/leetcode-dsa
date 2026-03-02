@@ -12,6 +12,7 @@ class Solution {
         int maxNumTillNow = digits[largeIndex] - '0'; // assume rightmost is my max
 
         for (int i = largeIndex - 1; i >= 0; i--) {
+
             int currNum = digits[i] - '0';
             if (currNum > maxNumTillNow) {
                 maxNumTillNow = currNum;
@@ -29,51 +30,10 @@ class Solution {
             digits[smallIndex] = digits[largeIndex];
             digits[largeIndex] = temp;
 
-            // create number
-            // int result = 0;
-            // for (int i = 0; i < digits.length; i++) {
-            //     int digit = digits[i] - '0';
-            //     result = (result * 10) + digit;
-            // } 
-            //return result;  
             return Integer.parseInt(new String(digits));
         }
- 
         return num;
     }
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     // Not sapce optimal
     public int maximumSwap1(int num) {
@@ -110,6 +70,6 @@ class Solution {
             }
 
         }
-        return num;  // if already maximum
+        return num; // if already maximum
     }
 }
