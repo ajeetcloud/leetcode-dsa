@@ -2,6 +2,11 @@ class Solution {
     public List<String> restoreIpAddresses(String s) {
 
         List<String> result = new ArrayList<>();
+
+        if (s.length() < 4 || s.length() > 12) {
+            return result;
+        }
+
         int index = 0;
         int segments = 0;
         backtrack(result, new StringBuilder(), s, index, segments);
