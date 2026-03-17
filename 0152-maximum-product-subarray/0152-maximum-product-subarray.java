@@ -1,7 +1,7 @@
 class Solution {
 
     // Space optimal with constant pace
-    public int maxProduct(int[] nums) {
+    public int maxProduct1(int[] nums) {
 
         int n = nums.length;
         int maxProd = nums[0];
@@ -25,7 +25,7 @@ class Solution {
 
 
     // Not that space optimal
-    public int maxProduct1(int[] nums) {
+    public int maxProduct(int[] nums) {
 
         int n = nums.length;
         int[] maxDp = new int[n];
