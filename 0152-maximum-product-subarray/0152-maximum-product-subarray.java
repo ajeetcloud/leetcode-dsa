@@ -1,6 +1,6 @@
 class Solution {
 
-    //Space optimal with constant space
+    // Space optimal with constant  space
     public int maxProduct(int[] nums) {
 
         int n = nums.length;
