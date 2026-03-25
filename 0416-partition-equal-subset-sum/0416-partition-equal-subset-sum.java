@@ -14,6 +14,7 @@ class Solution {
         return bt(nums, 0, target, memo);
     }
 
+    // This is memoization
     private boolean bt(int[] nums, int index, int target, Boolean[][] memo) {
 
         if (target == 0) {
