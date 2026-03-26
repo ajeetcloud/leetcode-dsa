@@ -11,7 +11,7 @@ class Solution {
         int target = sum / 2;
 
         // DP solution
-        return dp(nums, target);
+        return dp1(nums, target);
 
         /*
         // Memoization solution
@@ -22,7 +22,30 @@ class Solution {
 
     }
 
-    private boolean dp(int[] nums, int target) {
+    // Space optimal DP - 1D array
+    private boolean dp1(int[] nums, int target) {
+
+        boolean[] dpPrevRow = new boolean[target + 1];
+        dpPrevRow[0] = true; // rest all columns in the last row will be 0.
+
+        // recurrence relation
+        for (int i = nums.length - 1; i >= 0; i--) {
+
+            boolean[] dpCurrentRow = new boolean[target + 1];
+
+            for (int j = 0; j <= target; j++) {
+                 dpCurrentRow[j] = dpPrevRow[j];
+                if (j >= nums[i] && !dpCurrentRow[j]) {
+                    dpCurrentRow[j] = dpPrevRow[j - nums[i]];
+                }
+            }
+            dpPrevRow = dpCurrentRow;
+        }
+        return dpPrevRow[target];
+    }
+
+    // 2D DP Array
+    private boolean dp2(int[] nums, int target) {
 
         boolean[][] dp = new boolean[nums.length + 1][target + 1];
         dp[nums.length][0] = true; // rest all columns in this row should be 0.
