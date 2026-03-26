@@ -2,7 +2,7 @@ class Solution {
     public boolean canPartition(int[] nums) {
 
         int sum = 0;
-        for (int n: nums) {
+        for (int n : nums) {
             sum = sum + n;
         }
         if (sum % 2 != 0) {
@@ -34,7 +34,7 @@ class Solution {
             boolean[] dpCurrentRow = new boolean[target + 1];
 
             for (int j = 0; j <= target; j++) {
-                 dpCurrentRow[j] = dpPrevRow[j];
+                dpCurrentRow[j] = dpPrevRow[j];
                 if (j >= nums[i] && !dpCurrentRow[j]) {
                     dpCurrentRow[j] = dpPrevRow[j - nums[i]];
                 }
@@ -44,7 +44,7 @@ class Solution {
         return dpPrevRow[target];
     }
 
-    // 2D DP Array
+    // 2D DP Array - less space optimal
     private boolean dp2(int[] nums, int target) {
 
         boolean[][] dp = new boolean[nums.length + 1][target + 1];
@@ -53,7 +53,7 @@ class Solution {
         // recurrence relation
         for (int i = nums.length - 1; i >= 0; i--) {
             for (int j = 0; j <= target; j++) {
-                 dp[i][j] = dp[i + 1][j];
+                dp[i][j] = dp[i + 1][j];
                 if (j >= nums[i] && !dp[i][j]) {
                     dp[i][j] = dp[i + 1][j - nums[i]];
                 }
@@ -80,7 +80,7 @@ class Solution {
         }
 
         // (i + 1, j - nums[i]) || (i + 1, j)
-        memo[index][target] = bt(nums, index + 1, target - nums[index], memo) || 
+        memo[index][target] = bt(nums, index + 1, target - nums[index], memo) ||
                 bt(nums, index + 1, target, memo);
 
         return memo[index][target];
