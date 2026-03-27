@@ -5,8 +5,14 @@ class Solution {
 
         int startIndex = 0;
 
+        return dp(s, dict);
+
+        /*
+        // Memoization code
         Boolean[] memo = new Boolean[s.length() + 1];
         return memo(s, dict, startIndex, memo);
+        */
+
 
         /*
         // Simple Backtracking
@@ -14,7 +20,22 @@ class Solution {
         */
     }
 
+    // DP is iterative
+    private boolean dp(String s, Set<String> dict) {
 
+        boolean[] dp = new boolean[s.length() + 1];
+        dp[s.length()] = true;
+        
+        for (int i = s.length() - 1; i >= 0; i--) {
+            for (int j = i + 1; j <= s.length(); j++) {
+                String str = s.substring(i, j);
+                if (dict.contains(str) && dp[j]) {
+                    dp[i] = true;
+                }
+            }
+        }
+        return dp[0];
+    }
 
     // Memoization
     private boolean memo(String s, Set<String> dict, int startIndex, Boolean[] memo) {
