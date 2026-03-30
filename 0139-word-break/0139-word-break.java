@@ -13,7 +13,6 @@ class Solution {
         return memo(s, dict, startIndex, memo);
         */
 
-
         /*
         // Simple Backtracking
         return bt(s, dict, startIndex);
@@ -25,7 +24,7 @@ class Solution {
 
         boolean[] dp = new boolean[s.length() + 1];
         dp[s.length()] = true;
-        
+
         for (int i = s.length() - 1; i >= 0; i--) {
             for (int j = i + 1; j <= s.length(); j++) {
                 String str = s.substring(i, j);
