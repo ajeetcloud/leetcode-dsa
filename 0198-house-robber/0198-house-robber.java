@@ -1,6 +1,11 @@
 class Solution {
     public int rob(int[] nums) {
 
+        return normalDP(nums);
+    }
+
+    private int normalDP(int[] nums) {
+
         if (nums.length == 1) {
             return nums[0];
         }
