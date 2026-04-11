@@ -1,7 +1,32 @@
 class Solution {
     public int rob(int[] nums) {
 
-        return normalDP(nums);
+        return spaceOptimalDP(nums);
+
+        // return normalDP(nums);
+    }
+
+    private int spaceOptimalDP(int[] nums) {
+
+        if (nums.length == 1) {
+            return nums[0];
+        }
+
+        int option1 = nums[0];
+        int option2 = Math.max(nums[0], nums[1]);
+        int sum = 0;
+        for (int i = 2; i < nums.length; i++) {
+            option1 = nums[i] + option1;
+            option1 = Math.max(option1, option2);
+            
+            // swap option1 & option2
+            int temp = option1;
+            option1 = option2;
+            option2 = temp;
+
+        }
+        return Math.max(option1, option2);
+
     }
 
     private int normalDP(int[] nums) {
