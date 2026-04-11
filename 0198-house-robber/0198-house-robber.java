@@ -12,20 +12,17 @@ class Solution {
             return nums[0];
         }
 
-        int option1 = nums[0];
-        int option2 = Math.max(nums[0], nums[1]);
-        int sum = 0;
-        for (int i = 2; i < nums.length; i++) {
-            option1 = nums[i] + option1;
-            option1 = Math.max(option1, option2);
-            
-            // swap option1 & option2
-            int temp = option1;
-            option1 = option2;
-            option2 = temp;
+        int prevPrev = nums[0];
+        int prev = Math.max(nums[0], nums[1]);
 
+        for (int i = 2; i < nums.length; i++) {
+
+            int current = Math.max(nums[i] + prevPrev, prev);
+
+            prevPrev = prev;
+            prev = current;
         }
-        return Math.max(option1, option2);
+        return prev;
 
     }
 
