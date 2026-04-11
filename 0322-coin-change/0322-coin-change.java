@@ -2,17 +2,41 @@ class Solution {
     public int coinChange(int[] coins, int amount) {
 
 
+        // DP solution
+        int[] dp = new int[amount + 1];
+        return dpSolution(coins, dp, amount);
+
+        /*
+        // Memo solution
         int[] memo = new int[amount + 1];
         for (int i = 0; i < memo.length; i++) {
             memo[i] = -2;
         }
         return memoSolution(coins, amount, memo);
+        */
 
         /*
         // Backtracking solution
         return bt(coins, amount);
         */
 
+    }
+
+    private int dpSolution(int[] coins, int[] dp, int amount) {
+
+        Arrays.fill(dp, amount + 1);
+        dp[0] = 0;
+
+        for (int i = 1; i < dp.length; i++) {
+            int amt = i;
+            for (int coin: coins) {
+                if (amt >= coin) {
+                    dp[i] = Math.min(dp[i], 1 + dp[amt - coin]);
+                }
+            }
+        }
+        
+        return dp[amount] > amount ? -1 : dp[amount];
     }
 
     private int memoSolution(int[] coins, int amount, int[] memo) {
