@@ -1,19 +1,13 @@
 class Solution {
-    public int rob(int[] houses) {
-        
-        if(houses.length == 0){
-            return 0;
+    public int rob(int[] nums) {
+
+        int[] dp = new int[nums.length];
+        dp[0] = nums[0];
+        dp[1] = Math.max(nums[0], nums[1]);
+        int sum = 0;
+        for (int i = 2; i < nums.length; i++) {
+            dp[i] = Math.max(nums[i] + dp[i - 2], dp[i - 1]);
         }
-        if(houses.length == 1){
-            return houses[0];
-        }
-        
-        int[] storage = new int[houses.length];
-        storage[0] = houses[0];
-        storage[1] = Math.max(houses[1], houses[0]);
-        for (int i = 2; i < houses.length; i++) {
-            storage[i] = Math.max(houses[i] + storage[i - 2], storage[i - 1]);
-        }
-        return storage[houses.length - 1];
+        return dp[nums.length - 1];
     }
 }
