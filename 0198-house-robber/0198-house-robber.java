@@ -6,6 +6,7 @@ class Solution {
         // return normalDP(nums);
     }
 
+    // No extra space
     private int spaceOptimalDP(int[] nums) {
 
         if (nums.length == 1) {
