@@ -1,7 +1,6 @@
 class Solution {
     public int coinChange(int[] coins, int amount) {
 
-
         // DP solution
         int[] dp = new int[amount + 1];
         return dpSolution(coins, dp, amount);
@@ -29,13 +28,13 @@ class Solution {
 
         for (int i = 1; i < dp.length; i++) {
             int amt = i;
-            for (int coin: coins) {
+            for (int coin : coins) {
                 if (amt >= coin) {
                     dp[i] = Math.min(dp[i], 1 + dp[amt - coin]);
                 }
             }
         }
-        
+
         return dp[amount] > amount ? -1 : dp[amount];
     }
 
