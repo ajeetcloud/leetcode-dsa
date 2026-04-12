@@ -6,7 +6,7 @@ class Solution {
             return nums[0];
         }
 
-        if (nums.length == 2){
+        if (nums.length == 2) {
             return Math.max(nums[0], nums[1]);
         }
 
@@ -21,7 +21,7 @@ class Solution {
         int prev = Math.max(nums[startIndex], nums[startIndex + 1]);
 
         for (int i = startIndex + 2; i <= endIndex; i++) {
-            
+
             int current = Math.max(nums[i] + prevPrev, prev);
             prevPrev = prev;
             prev = current;
