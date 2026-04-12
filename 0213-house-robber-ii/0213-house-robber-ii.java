@@ -10,6 +10,7 @@ class Solution {
             return Math.max(nums[0], nums[1]);
         }
 
+        // Break circular problems into 2 linear subproblems
         int endIndex = nums.length - 1;
         return Math.max(robLinear(nums, 0, endIndex - 1), robLinear(nums, 1, endIndex));
     }
