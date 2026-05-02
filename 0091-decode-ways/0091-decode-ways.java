@@ -3,9 +3,11 @@ class Solution {
 
         Integer[] memo = new Integer[s.length() + 1];
         return memoSolution(s, 0, memo);
+        
         // return bt(s, 0);
     }
 
+    // Memo solution
     private int memoSolution(String s, int i, Integer[] memo) {
 
         if (i >= s.length()) {
