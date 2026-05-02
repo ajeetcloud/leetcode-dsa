@@ -3,8 +3,11 @@ class Solution {
 
         Integer[] memo = new Integer[s.length() + 1];
         return memoSolution(s, 0, memo);
-        
-        // return bt(s, 0);
+
+        /*
+        // BT solution
+        return bt(s, 0);
+        */
     }
 
     // Memo solution
