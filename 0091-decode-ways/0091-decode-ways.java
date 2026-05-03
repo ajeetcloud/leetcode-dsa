@@ -1,6 +1,7 @@
 class Solution {
     public int numDecodings(String s) {
 
+        // DP solution
         return dpSolution(s);
 
         /*
