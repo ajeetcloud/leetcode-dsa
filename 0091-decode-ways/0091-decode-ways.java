@@ -1,14 +1,44 @@
 class Solution {
     public int numDecodings(String s) {
 
-        Integer[] memo = new Integer[s.length() + 1];
+        return dpSolution(s);
+
+        /*
+        Integer[] memo = new Integer[s.length() + 1];gm
         return memoSolution(s, 0, memo);
+        */
 
         /*
         // BT solution
         return bt(s, 0);
         */
     }
+
+    // DP solution
+    private int dpSolution(String s) {
+
+        int[] dp = new int[s.length() + 1];
+        dp[s.length()] = 1;
+
+        for (int i = s.length() - 1; i >= 0; i--) {
+            if (s.charAt(i) == '0') {
+                dp[i] = 0;
+                continue;
+            }
+            int sol1 = dp[i+1];
+            int sol2 = 0;
+
+            if (i + 1 < s.length()) {
+                int doubleCharNum = ((s.charAt(i) - '0') * 10) + (s.charAt(i + 1) - '0');
+                if (doubleCharNum <= 26) {
+                    sol2 = dp[i + 2];
+                }
+            }
+            dp[i] = sol1 + sol2;
+        }
+        return dp[0];
+    }
+
 
     // Memo solution
     private int memoSolution(String s, int i, Integer[] memo) {
