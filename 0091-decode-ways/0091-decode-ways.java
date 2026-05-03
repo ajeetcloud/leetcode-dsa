@@ -1,8 +1,14 @@
 class Solution {
     public int numDecodings(String s) {
 
+
+        // Space Optimal DP
+        return dpSolutionSpaceOptimal(s);
+
+        /*
         // DP solution
         return dpSolution(s);
+        */
 
         /*
         // Memo solution
@@ -14,6 +20,35 @@ class Solution {
         // BT solution
         return bt(s, 0);
         */
+    }
+
+    // DP solution - space optimal
+    private int dpSolutionSpaceOptimal(String s) {
+
+        int current = 0;
+        int next = 1; // i + 1
+        int nextNext = 0; // i + 2
+
+        for (int i = s.length() - 1; i >= 0; i--) {
+            if (s.charAt(i) == '0') {
+                nextNext = next;
+                next = 0;
+                continue;
+            }
+            int sol1 = next;
+            int sol2 = 0;
+
+            if (i + 1 < s.length()) {
+                int doubleCharNum = ((s.charAt(i) - '0') * 10) + (s.charAt(i + 1) - '0');
+                if (doubleCharNum >= 10 && doubleCharNum <= 26) {
+                    sol2 = nextNext;
+                }
+            }
+            current = sol1 + sol2;
+            nextNext = next;
+            next = current;
+        }
+        return next;
     }
 
     // DP solution
