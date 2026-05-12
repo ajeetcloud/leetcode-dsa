@@ -9,7 +9,8 @@ class Solution {
             } 
             else if (nums[i] != nums[idx]) {
                 swap(nums, i, idx);
-            } else {
+            } 
+            else {
                 i++;
             }
         }
