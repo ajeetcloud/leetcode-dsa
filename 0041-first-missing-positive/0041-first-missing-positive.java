@@ -6,9 +6,11 @@ class Solution {
             int idx = nums[i] - 1;
             if (idx < 0 || idx >= nums.length) {
                 i++;
-            } else if (nums[i] != nums[idx]) {
+            } 
+            else if (nums[i] != nums[idx]) {
                 swap(nums, i, idx);
-            } else {
+            } 
+            else {
                 i++;
             }
         }
