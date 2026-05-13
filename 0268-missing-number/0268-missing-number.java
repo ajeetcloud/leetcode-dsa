@@ -4,7 +4,7 @@ class Solution {
     public int missingNumber(int[] nums) {
 
         int n = nums.length;
-        int expectedSum = (int) (n * (n + 1) / 2);
+        int expectedSum = n * (n + 1) / 2;
 
         int actualSum = 0; // Arrays.stream(nums).sum();
         for (int i = 0; i < nums.length; i++) {
