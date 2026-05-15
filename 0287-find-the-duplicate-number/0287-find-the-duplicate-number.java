@@ -1,5 +1,37 @@
 class Solution {
+
+    // Cyclic Sort - Inplace(modifies array)
     public int findDuplicate(int[] nums) {
+
+        int i = 0;
+        while (i < nums.length) {
+            int targetIdx = nums[i] - 1;
+            if (nums[i] != nums[targetIdx]) {
+                swap(nums, i, targetIdx);
+            } else {
+                i++;
+            }
+        }
+
+        // Phase 2
+        for (int k = 0; k < nums.length; k++) {
+            int num = nums[k];
+            if (num != k + 1) {
+                return num;
+            }
+        }
+        return -1;
+    }
+
+    private void swap(int[] nums, int a, int b) {
+
+        int temp = nums[a];
+        nums[a] = nums[b];
+        nums[b] = temp;
+    }
+
+    // Slow fast pointer approach
+    public int findDuplicate1(int[] nums) {
         // Find the intersection point of the two runners.
         int tortoise = nums[0];
         int hare = nums[0];
