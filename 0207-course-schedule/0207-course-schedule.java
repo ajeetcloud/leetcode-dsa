@@ -18,6 +18,7 @@ class Solution {
             indegree[course]++;
         }
 
+        // Seed the Queue
         for (int i = 0; i < numCourses; i++) {
             if (indegree[i] == 0) {
                 queue.offer(i);
