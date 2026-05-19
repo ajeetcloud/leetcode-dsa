@@ -1,6 +1,7 @@
 class Solution {
     public List<String> findAllRecipes(String[] recipes, List<List<String>> ingredients, String[] supplies) {
         
+        // Phase 1: Create adj Map & indegree
         Map<String, List<String>> adj = new HashMap<>();
         Map<String, Integer> indegree = new HashMap<>();
 
@@ -17,6 +18,7 @@ class Solution {
             
         }
 
+        // Phase 2: Create supply Queue
         Deque<String> supplyQueue = new ArrayDeque<>();
         for (String supply: supplies) {
             supplyQueue.offer(supply);
@@ -24,6 +26,7 @@ class Solution {
 
         List<String> result = new ArrayList<>();
 
+        // Phase 3: Iterate on queue
         while (!supplyQueue.isEmpty()) {
             String current = supplyQueue.poll();
 
