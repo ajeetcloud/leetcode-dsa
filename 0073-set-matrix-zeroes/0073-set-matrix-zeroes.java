@@ -7,6 +7,8 @@ class Solution {
         boolean isFirstRowZero = false;
         boolean isFirstColZero = false;
 
+        // Use First row as indicator for columns
+        // USe First column as indictaor for rows
         // Check first row
         for (int i = 0; i < n; i++) {
             if (matrix[0][i] == 0) {
