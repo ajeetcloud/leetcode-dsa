@@ -14,7 +14,9 @@ class Solution {
             }
             stack.push(i);
         }
-
+        // For all leftovers in the stack, set result[stack.poll()] = 0
+        // but not needed as stack by int array by default gets seeded with 0
+        
         return result;
     }
 }
