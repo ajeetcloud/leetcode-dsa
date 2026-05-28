@@ -4,9 +4,8 @@ class Solution {
         int[] result = new int[temperatures.length];
         
         Deque<Integer> stack = new ArrayDeque<>();
-        stack.push(0);
 
-        for (int i = 1; i < temperatures.length; i++) {
+        for (int i = 0; i < temperatures.length; i++) {
             int currTemp = temperatures[i];
 
             while (!stack.isEmpty() && currTemp > temperatures[stack.peek()]) {
@@ -14,9 +13,8 @@ class Solution {
                 result[prevIndex] = i - prevIndex;
             }
             stack.push(i);
-
         }
-        
+
         return result;
     }
 }
