@@ -1,5 +1,6 @@
 class Solution {
 
+    // This is nlogn solution, less optimal but more intuitive
     public int maxWidthRamp(int[] nums) {
 
         Integer[] indices = new Integer[nums.length];
