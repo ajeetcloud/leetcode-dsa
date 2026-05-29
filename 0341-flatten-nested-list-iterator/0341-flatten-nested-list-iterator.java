@@ -20,7 +20,6 @@ public class NestedIterator implements Iterator<Integer> {
     private List<Integer> result;
     private final Iterator<Integer> iter;
 
-
     public NestedIterator(List<NestedInteger> nestedList) {
         result = new ArrayList<>();
         flattenList(nestedList);
