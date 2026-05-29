@@ -17,6 +17,8 @@
  */
 public class NestedIterator implements Iterator<Integer> {
 
+    // Explicit stack performs better than recursion, when nesting is uncertain
+    // As this ArrayDeque gets stored in HeapMemory
     Deque<NestedInteger> stack;
 
     public NestedIterator(List<NestedInteger> nestedList) {
