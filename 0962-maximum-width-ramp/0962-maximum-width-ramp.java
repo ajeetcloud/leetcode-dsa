@@ -7,7 +7,8 @@ class Solution {
             indices[i] = i;
         }
 
-        Arrays.sort(indices, (a, b) -> Integer.compare(nums[a], nums[b]));
+        Arrays.sort(indices, (a, b) -> nums[a] != nums[b] ? Integer.compare(nums[a], nums[b]): 
+            Integer.compare(a, b));
 
         int minIndexSeenTillNow = nums.length;
         int result = 0;
