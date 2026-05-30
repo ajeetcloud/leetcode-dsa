@@ -1,6 +1,6 @@
 class Solution {
 
-    // Stack solution
+    // Stack solution - O(n)
     public int maxWidthRamp(int[] nums) {
 
         Deque<Integer> stack = new ArrayDeque<>();
