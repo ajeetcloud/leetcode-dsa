@@ -15,12 +15,16 @@ class Solution {
         int maxResult = 0;
         // Phase 2
         for (int j = nums.length - 1; j >= 0; j--) {
+            // This while loop is GLOBALLY bounded and does not depend on j
             while (!stack.isEmpty() && nums[stack.peek()] <= nums[j]) {
 
                 int left = stack.pop();
                 maxResult = Math.max(maxResult, j - left);
             }
         }
+        // Once the while loop pops element, it is popped forever, it won't get executed for any other
+        // value of 'j', so it becomes O(n) + O(n)
+
         return maxResult;
     }
 
