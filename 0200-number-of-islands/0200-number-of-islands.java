@@ -6,7 +6,7 @@ class Solution {
     private static final int[][] DIRECTIONS = { { 1, 0 }, { -1, 0 }, { 0, 1 }, { 0, -1 } };
 
     // BFS
-    public int numIslands(char[][] grid) {
+    public int numIslandsBFS(char[][] grid) {
 
         int m = grid.length;
         int n = grid[0].length;
@@ -57,7 +57,7 @@ class Solution {
     }
 
     // Recursive DFS
-    public int numIslandsDFS(char[][] grid) {
+    public int numIslands(char[][] grid) {
 
         int m = grid.length;
         int n = grid[0].length;
