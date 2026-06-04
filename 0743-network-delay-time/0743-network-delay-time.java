@@ -46,7 +46,6 @@ class Solution {
                 }
             }
         }
-
         int maxTime = 0;
         for (int i = 1; i <= n; i++) {
             if (dist[i] == Integer.MAX_VALUE) {
