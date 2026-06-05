@@ -20,9 +20,42 @@ class Node {
 
 class Solution {
 
+    // Serves as visited
     Map<Node, Node> cloned = new HashMap<>();
 
+    // This is BFS solution
     public Node cloneGraph(Node node) {
+
+        if (node == null) {
+            return null;
+        }
+
+        Node copy = new Node(node.val);
+        Deque<Node> queue = new ArrayDeque<>();
+
+        queue.offer(node);
+        cloned.put(node, copy);
+
+        while (!queue.isEmpty()) {
+            Node current = queue.poll();
+            
+            for (Node neighbor: current.neighbors) {
+                
+                if (!cloned.containsKey(neighbor)) {
+                    Node neighborCopy = new Node(neighbor.val);
+                    queue.offer(neighbor);
+                    cloned.put(neighbor, neighborCopy);
+                }
+                cloned.get(current).neighbors.add(cloned.get(neighbor));
+            
+            }
+        }
+        return copy;
+    }
+
+
+    // This is Recursive DFS - recusrion might pose a risk
+    public Node cloneGraphDFS(Node node) {
 
         if (node == null) {
             return null;
