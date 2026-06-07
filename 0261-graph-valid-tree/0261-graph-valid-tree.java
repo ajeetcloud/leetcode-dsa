@@ -1,7 +1,57 @@
 class Solution {
 
-    // This is vanilla dfs solution
+    int[] parent;
+
+
+    // Performs union of 'a' and 'b'
+    private boolean union(int a, int b) {
+
+        int leaderA = find(a);
+        int leaderB = find(b);
+
+        if (leaderA == leaderB) {
+            return false;
+        }
+        parent[leaderA] = leaderB;
+        return true;
+
+    }
+
+    // Finds Leader
+    private int find(int n) {
+
+        while (parent[n] != n) {
+            n = parent[n];    
+        }
+        return n;
+    }
+
+
     public boolean validTree(int n, int[][] edges) {
+
+        if (edges.length != n - 1) {
+            return false;
+        }
+
+        parent = new int[n];
+        // Ever node is its own leader by default
+        for (int i = 0; i < n; i++) {
+            parent[i] = i;
+        }
+
+        for (int[] edge: edges) {
+            // cycle detection
+            if (!union(edge[0], edge[1])) {
+                return false;
+            }            
+        }
+
+        return true;
+    }
+
+
+    // This is vanilla dfs solution
+    public boolean validTreeDFS(int n, int[][] edges) {
 
         // For a tree: E = V - 1
         if (edges.length != n - 1) {
