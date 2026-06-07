@@ -19,10 +19,17 @@ class Solution {
     // Finds Leader
     private int find(int n) {
 
+        // This is path compression
+        if (parent[n] != n) {
+            return find(parent[n]);
+        }
+
+        /*
         // This is normal logic
         while (parent[n] != n) {
             n = parent[n];    
         }
+        */
         return n;
     }
 
