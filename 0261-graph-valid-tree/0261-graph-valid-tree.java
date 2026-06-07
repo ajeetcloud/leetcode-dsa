@@ -1,6 +1,6 @@
 class Solution {
 
-    // This is a valid solution
+    // This is vanilla dfs solution
     public boolean validTree(int n, int[][] edges) {
 
         // For a tree: E = V - 1
