@@ -1,7 +1,9 @@
 class Solution {
+
+    // This is a valid solution
     public boolean validTree(int n, int[][] edges) {
 
-        // For a connected tree: E = V - 1
+        // For a tree: E = V - 1
         if (edges.length != n - 1) {
             return false;
         }
