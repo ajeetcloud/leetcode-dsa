@@ -19,6 +19,7 @@ class Solution {
     // Finds Leader
     private int find(int n) {
 
+        // This is normal logic
         while (parent[n] != n) {
             n = parent[n];    
         }
