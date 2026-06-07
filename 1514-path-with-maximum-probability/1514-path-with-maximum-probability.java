@@ -9,7 +9,7 @@ class Solution {
 
         List<List<Edge>> adj = new ArrayList<>();
         for (int i = 0; i < n; i++) {
-            adj.add(new ArrayList());
+            adj.add(new ArrayList<>());
         }
 
         for (int i = 0; i < edges.length; i++) {
