@@ -2,7 +2,6 @@ class Solution {
 
     int[] parent;
 
-
     // Performs union of 'a' and 'b'
     private boolean union(int a, int b) {
 
@@ -26,7 +25,6 @@ class Solution {
         return n;
     }
 
-
     public boolean validTree(int n, int[][] edges) {
 
         if (edges.length != n - 1) {
@@ -48,6 +46,9 @@ class Solution {
 
         return true;
     }
+
+
+    /////////////////// Alternate basic dfs solution ////////////////
 
 
     // This is vanilla dfs solution
