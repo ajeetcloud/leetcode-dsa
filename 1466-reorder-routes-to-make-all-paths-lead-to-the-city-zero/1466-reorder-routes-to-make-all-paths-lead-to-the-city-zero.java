@@ -7,12 +7,14 @@ class Solution {
             adj.add(new ArrayList<>());
         }
 
-        Set<String> origRoute = new HashSet<>();
+        // If we create a String set we can store like - '0->1'
+        Set<Integer> origRoute = new HashSet<>();
 
         for (int[] connection: connections) {
             int from = connection[0];
             int to = connection[1];
-            origRoute.add(from + "->" + to);
+            // origRoute.add(from + "->" + to);
+            origRoute.add((from * n) + to);
             adj.get(from).add(to);
             adj.get(to).add(from);
         }
@@ -21,8 +23,9 @@ class Solution {
         return dfs(0, adj, origRoute, visited);
     }
 
-    private int dfs(int originNode, List<List<Integer>> adj, Set<String> origRoute, boolean[] visited) {
+    private int dfs(int originNode, List<List<Integer>> adj, Set<Integer> origRoute, boolean[] visited) {
 
+        int n = adj.size();
         visited[originNode] = true;
         int count = 0;
         List<Integer> neighbors = adj.get(originNode);
@@ -31,7 +34,8 @@ class Solution {
             if (visited[neighbor]) {
                 continue;
             }
-            String edge = originNode + "->" + neighbor;
+            // String edge = originNode + "->" + neighbor;
+            int edge = (originNode * n) + neighbor;
             if (origRoute.contains(edge)) {
                 count++;
             }
