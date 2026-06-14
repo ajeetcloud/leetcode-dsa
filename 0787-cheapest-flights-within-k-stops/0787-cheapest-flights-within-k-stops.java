@@ -16,23 +16,32 @@ class Solution {
             adj.get(from).add(new Node(to, cost));
         }
 
+        // fewest stops to reach each node so far
+        int[] minStops = new int[n];
+        Arrays.fill(minStops, Integer.MAX_VALUE);
+
         PriorityQueue<State> pq = new PriorityQueue<>((a, b) -> Integer.compare(a.cost(), b.cost()));
         pq.offer(new State(0, src, 0));
 
-        while(!pq.isEmpty()) {
+        while (!pq.isEmpty()) {
             State current = pq.poll();
+            int currentCost = current.cost();
+            int currentNode = current.node();
+            int currentStops = current.stops();
 
-            if (current.node() == dst) {
-                return current.cost();
-            }
-            if (current.stops() > k) {
+            if (currentStops >= minStops[currentNode] || currentStops > k + 1) {
                 continue;
             }
-            List<Node> neighbors = adj.get(current.node());
-            for (Node node: neighbors) {
-                int newCost = current.cost() + node.cost();
+            minStops[currentNode] = currentStops;
+            if (currentNode == dst) {
+                return currentCost;
+            }
+
+            List<Node> neighbors = adj.get(currentNode);
+            for (Node neighbor: neighbors) {
+                int newCost = current.cost() + neighbor.cost();
                 int newStops = current.stops() + 1;
-                pq.offer(new State(newCost, node.dest(), newStops));
+                pq.offer(new State(newCost, neighbor.dest(), newStops));
             }
         }
         return -1;
