@@ -14,7 +14,38 @@
  * }
  */
 class Solution {
+
+    int diameter = 0;
+
     public int diameterOfBinaryTree(TreeNode root) {
+
+        heightDFS(root);
+        return diameter;
+    }
+
+    // Run DFS
+    private int heightDFS(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int leftHeight = heightDFS(root.left);
+        int rightHeight = heightDFS(root.right);
+
+        // Assume if cuurent node is diameter
+        diameter = Math.max(diameter, leftHeight + rightHeight);
+
+        // Each node will return its height
+        return 1 + Math.max(leftHeight, rightHeight);
+    }
+
+
+
+
+
+    // ====================================================================
+
+    // Normal solution O(N^2)
+    public int diameterOfBinaryTreeNormal(TreeNode root) {
 
         if (root == null) {
             return 0;
