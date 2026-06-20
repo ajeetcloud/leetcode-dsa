@@ -24,6 +24,7 @@ class Solution {
         dfsEdgetoEdge(0, -1, 0);
         int farthestNodeOfDiameter = farthestNode;
 
+        maxDist = 0;
         dfsEdgetoEdge(farthestNodeOfDiameter, -1, 0);
 
         return maxDist;
