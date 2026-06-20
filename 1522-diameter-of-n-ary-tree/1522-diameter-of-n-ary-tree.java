@@ -42,13 +42,13 @@ class Solution {
 
         List<Node> children = root.children;
 
-        for (Node child: children) {
+        for (Node child : children) {
 
-            int childHeight = dfs(child);
+            int childHeight = 1 + dfs(child);
             if (childHeight > best1) {
                 best2 = best1;
                 best1 = childHeight;
-            }
+            } 
             else if (childHeight > best2) {
                 best2 = childHeight;
             }
@@ -56,31 +56,6 @@ class Solution {
 
         diameter = Math.max(diameter, (best1 + best2));
 
-        return 1 + best1;
+        return best1;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
