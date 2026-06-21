@@ -39,7 +39,6 @@ class Solution {
         while (!queue.isEmpty() && rem > 2) {
 
             int outerLayerSize = queue.size(); // level size
-
             for (int i = 0; i < outerLayerSize; i++) {
 
                 int current = queue.poll();
