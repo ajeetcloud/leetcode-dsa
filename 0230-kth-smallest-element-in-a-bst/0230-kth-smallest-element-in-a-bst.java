@@ -20,23 +20,23 @@ class Solution {
 
     public int kthSmallest(TreeNode root, int k) {
 
-        dfs(root, k);
+        dfsInorder(root, k);
         return result;
     }
 
     // Inorder
-    private void dfs(TreeNode node, int k) {
+    private void dfsInorder(TreeNode node, int k) {
 
         if (node == null || count >= k) {
             return;
         }
-        dfs(node.left, k);
+        dfsInorder(node.left, k);
         // Visit
         count++;
         if (count == k) {
             result = node.val;
             return;
         }
-        dfs(node.right, k);
+        dfsInorder(node.right, k);
     }
 }
