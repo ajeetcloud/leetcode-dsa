@@ -14,7 +14,32 @@
  * }
  */
 class Solution {
+
+    // BST inorder traversal is always increasing
     public boolean isValidBST(TreeNode root) {
+
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        TreeNode current = root;
+        Integer prev = null;
+
+        while (current != null || !stack.isEmpty()) {
+            while (current != null) {       // Inner while - dive as left as possible
+                stack.push(current);
+                current = current.left;
+            }
+            current = stack.pop();
+            if (prev != null && prev >= current.val) {
+                return false;
+            }
+            prev = current.val;
+            // current
+            current = current.right;
+        }
+        return true;
+    }
+
+    // This uses a traditional DFS top down approach
+    public boolean isValidBSTDFS(TreeNode root) {
 
         return dfs(root, null, null);
     }
