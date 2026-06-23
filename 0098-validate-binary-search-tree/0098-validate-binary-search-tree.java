@@ -16,7 +16,7 @@
 class Solution {
 
     // BST inorder traversal is always increasing
-    public boolean isValidBST(TreeNode root) {
+    public boolean isValidBST1(TreeNode root) {
 
         Deque<TreeNode> stack = new ArrayDeque<>();
         TreeNode current = root;
@@ -39,7 +39,7 @@ class Solution {
     }
 
     // This uses a traditional DFS top down approach
-    public boolean isValidBSTDFS(TreeNode root) {
+    public boolean isValidBST(TreeNode root) {
 
         return dfs(root, null, null);
     }
