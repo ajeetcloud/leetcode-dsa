@@ -18,7 +18,31 @@ class Solution {
     private int count = 0;
     private int result = 0;
 
+    // This is iterative solution
     public int kthSmallest(TreeNode root, int k) {
+        
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        TreeNode current = root;
+
+        while (true) {
+            while (current != null) {   // dive left loop
+                stack.push(current);
+                current = current.left;
+            }
+            if (stack.isEmpty()) {
+                break;
+            }
+            current = stack.pop();
+            k--;
+            if (k == 0) {
+                return current.val;
+            }
+            current = current.right;
+        }
+        return -1;
+    }
+
+    public int kthSmallestRecursion(TreeNode root, int k) {
 
         dfsInorder(root, k);
         return result;
