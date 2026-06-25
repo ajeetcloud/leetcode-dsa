@@ -15,7 +15,7 @@
  */
 class Solution {
 
-    // These serve like a scoreboard for top down DFS
+    // These serve like a scoreboard for top down DFS, top down dfs propagates state
     private int count = 0;
     private int result = 0;
 
