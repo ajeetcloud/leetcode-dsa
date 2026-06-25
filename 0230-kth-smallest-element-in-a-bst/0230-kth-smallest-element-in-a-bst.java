@@ -15,6 +15,7 @@
  */
 class Solution {
 
+    // These serve like a scoreboard for top down DFS
     private int count = 0;
     private int result = 0;
 
