@@ -19,7 +19,7 @@ class Solution {
     private int result = 0;
 
     // This is iterative solution
-    public int kthSmallest1(TreeNode root, int k) {
+    public int kthSmallest(TreeNode root, int k) {
         
         Deque<TreeNode> stack = new ArrayDeque<>();
         TreeNode current = root;
@@ -42,7 +42,7 @@ class Solution {
         return -1;
     }
 
-    public int kthSmallest(TreeNode root, int k) {
+    public int kthSmallestRecursion(TreeNode root, int k) {
 
         dfsInorder(root, k);
         return result;
