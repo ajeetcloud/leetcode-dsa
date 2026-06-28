@@ -18,6 +18,7 @@ class Solution {
         return successor;
     }
 
+    // This does not use the BST property
     private void dfs(TreeNode node, TreeNode p) {
 
         if (node == null || successor != null) {
