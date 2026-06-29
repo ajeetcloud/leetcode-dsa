@@ -14,9 +14,15 @@
  * }
  */
 class Solution {
+
+    Map<Integer, Integer> inOrderMap = new HashMap<>();
+
     public TreeNode buildTree(int[] preorder, int[] inorder) {
         
         int length = preorder.length;
+        for (int i = 0; i < length; i++) {
+            inOrderMap.put(inorder[i], i);
+        }
         return dfs(preorder, inorder, 0, length - 1, 0, length - 1);
     }
 
@@ -28,8 +34,10 @@ int endIndexIn) {
     }
 
     TreeNode root = new TreeNode(preorder[startIndexPre]);
-    int inOrderRootIndex = -1;
-    int elementsInLeftSubTree = 0;
+    int inOrderRootIndex = inOrderMap.get(root.val);
+    int elementsInLeftSubTree = inOrderRootIndex - startIndexIn;
+    /*
+    // For loop makes it quadratic time complexity, using map brings it back to linear
     for (int i = startIndexIn; i <= endIndexIn; i++) {
         if (inorder[i] == root.val) {
             inOrderRootIndex = i;
@@ -37,6 +45,7 @@ int endIndexIn) {
         }
         elementsInLeftSubTree++;
     }
+    */
 
     root.left = dfs(preorder, inorder, startIndexPre + 1, startIndexPre + elementsInLeftSubTree, startIndexIn, inOrderRootIndex - 1);
     root.right = dfs(preorder, inorder, startIndexPre + elementsInLeftSubTree + 1, endIndexPre, inOrderRootIndex + 1, endIndexIn);
