@@ -13,18 +13,66 @@
  *     }
  * }
  */
+
+record Frame(TreeNode node, boolean expanded) {}
+
 class Solution {
 
     public void flatten(TreeNode root) {
 
+        flattenIterative(root);
+
         //morrisTraversal(root);
 
-        
+        /*
         // DFS Recursive approach    
         dfsFlatten(root);
-        
+        */
     }
 
+    private void flattenIterative(TreeNode root) {
+
+        Deque<Frame> stack = new ArrayDeque<>();
+        Map<TreeNode, TreeNode> tailMap = new HashMap<>();
+        stack.push(new Frame(root, false));
+
+        while (!stack.isEmpty()) {
+            Frame f = stack.pop();
+            TreeNode node = f.node();
+            if (node == null) {
+                continue;
+            }
+
+            if (!f.expanded()) {
+                stack.push(new Frame(node, true)); // 2nd time putting it
+                stack.push(new Frame(node.right, false));
+                stack.push(new Frame(node.left, false));
+            } 
+            else {
+                TreeNode leftTail = tailMap.get(node.left);
+                TreeNode rightTail = tailMap.get(node.right);
+                if (leftTail != null) {
+                    leftTail.right = node.right;
+                    node.right = node.left;
+                    node.left = null;
+                }
+                TreeNode tail;
+                if (rightTail != null) {
+                    tail = rightTail;
+                }
+                else if (leftTail != null) {
+                    tail = leftTail;
+                }
+                else {
+                    tail = node;
+                }
+                tailMap.put(node, tail);
+            }
+        }
+
+    }
+
+    // Constant Space traversal
     private void morrisTraversal(TreeNode root) {
 
         TreeNode curr = root;
