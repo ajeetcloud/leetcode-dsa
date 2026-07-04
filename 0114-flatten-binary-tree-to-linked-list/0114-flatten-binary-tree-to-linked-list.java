@@ -17,7 +17,16 @@ class Solution {
 
     public void flatten(TreeNode root) {
 
-        // Morris Traversal
+        morrisTraversal(root);
+
+        /*
+        // DFS Recursive approach    
+        dfsFlatten(root);
+        */
+    }
+
+    private void morrisTraversal(TreeNode root) {
+
         TreeNode curr = root;
         while (curr != null) {
             if (curr.left != null) {
@@ -31,11 +40,6 @@ class Solution {
             }
             curr = curr.right;
         }
-
-        /*
-        // DFS Recursive approach    
-        dfsFlatten(root);
-        */
     }
 
     private TreeNode dfsFlatten(TreeNode node) {
