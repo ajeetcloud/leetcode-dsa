@@ -14,6 +14,7 @@
  * }
  */
 
+// Expanded flag is used for bottom-up traversal
 record Frame(TreeNode node, boolean expanded) {}
 
 class Solution {
