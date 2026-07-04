@@ -17,12 +17,12 @@ class Solution {
 
     public void flatten(TreeNode root) {
 
-        morrisTraversal(root);
+        //morrisTraversal(root);
 
-        /*
+        
         // DFS Recursive approach    
         dfsFlatten(root);
-        */
+        
     }
 
     private void morrisTraversal(TreeNode root) {
