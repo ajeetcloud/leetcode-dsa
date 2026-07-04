@@ -20,14 +20,14 @@ class Solution {
 
     public void flatten(TreeNode root) {
 
+        // DFS Recursive approach    
+        // dfsFlatten(root);
+
+        // Iterative DFS
         flattenIterative(root);
 
+        // Morris provides constant space
         //morrisTraversal(root);
-
-        /*
-        // DFS Recursive approach    
-        dfsFlatten(root);
-        */
     }
 
     private void flattenIterative(TreeNode root) {
