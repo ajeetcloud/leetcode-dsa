@@ -17,7 +17,6 @@ class Solution {
 
     public void flatten(TreeNode root) {
 
-        TreeNode head = new TreeNode();
         dfsFlatten(root);
     }
 
