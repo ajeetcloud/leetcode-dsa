@@ -15,14 +15,14 @@
  */
 class Solution {
 
-        private Set<Integer> toDelete;
-        private List<TreeNode> forest;
+    private Set<Integer> toDelete;
+    private List<TreeNode> forest;
 
     public List<TreeNode> delNodes(TreeNode root, int[] to_delete) {
 
         forest = new ArrayList<>();
         toDelete = new HashSet<>();
-        for (int val: to_delete) {
+        for (int val : to_delete) {
             toDelete.add(val);
         }
         // If root is not to be deleted, have to handle edge case
@@ -57,30 +57,3 @@ class Solution {
         return node;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
