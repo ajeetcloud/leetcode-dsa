@@ -37,19 +37,19 @@ public class Codec {
     // Decodes your encoded data to tree.
     public TreeNode deserialize(String data) {
 
-        String[] tokens = data.split(",");
-        return deserializeDfs(tokens);
+        Queue<String> queue = new ArrayDeque<>(Arrays.asList(data.split(",")));
+        return deserializeDfsQueue(queue);
     }
 
-    private TreeNode deserializeDfs(String[] tokens) {
-        String token = tokens[index];
-        index++;
+    // This is DFS Recursive with Queue 
+    private TreeNode deserializeDfsQueue(Queue<String> queue) {
+        String token = queue.poll();
         if (token.equals("n")) {
             return null;
         }
         TreeNode node = new TreeNode(Integer.parseInt(token));
-        node.left = deserializeDfs(tokens);
-        node.right = deserializeDfs(tokens);
+        node.left = deserializeDfsQueue(queue);
+        node.right = deserializeDfsQueue(queue);
 
         return node;
     }
