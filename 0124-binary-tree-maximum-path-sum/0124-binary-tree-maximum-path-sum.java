@@ -30,7 +30,7 @@ class Solution {
         }
 
         int leftGain = Math.max(0, gain(node.left));
-        int rightGain = Math.max(0,gain(node.right));
+        int rightGain = Math.max(0, gain(node.right));
 
         maxSum = Math.max(maxSum, leftGain + node.val + rightGain);
         return node.val + Math.max(leftGain, rightGain);
