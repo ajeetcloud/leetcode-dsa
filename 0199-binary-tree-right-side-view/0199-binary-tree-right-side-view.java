@@ -16,8 +16,9 @@
 class Solution {
 
     List<Integer> result;
+
     public List<Integer> rightSideView(TreeNode root) {
-        
+
         result = new ArrayList<>();
         dfs(root, 0);
 
@@ -31,12 +32,9 @@ class Solution {
         }
         if (result.size() == depth) {
             result.add(root.val);
-        }   
+        }
         int newDepth = depth + 1;
         dfs(root.right, newDepth);
         dfs(root.left, newDepth);
     }
 }
-
-
-
