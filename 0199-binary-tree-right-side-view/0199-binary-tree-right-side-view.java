@@ -19,16 +19,17 @@ class Solution {
     public List<Integer> rightSideView(TreeNode root) {
         
         result = new ArrayList<>();
-        dfs(root, 1);
+        dfs(root, 0);
 
         return result;
     }
 
     private void dfs(TreeNode root, int depth) {
+
         if (root == null) {
             return;
         }
-        if (result.size() < depth) {
+        if (result.size() == depth) {
             result.add(root.val);
         }   
         int newDepth = depth + 1;
