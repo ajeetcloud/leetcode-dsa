@@ -37,7 +37,7 @@ class Solution {
                     queue.offer(node.right);
                 }
             }
-            result.add((double)sum / levelSize);
+            result.add((double) sum / levelSize);
         }
         return result;
     }
