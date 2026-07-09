@@ -27,11 +27,19 @@ class Solution {
         while (!queue.isEmpty()) {
             int levelSize = queue.size();
             
-            List<Integer> list = new ArrayList<>();
+            // Dequeue avoids doing reverse
+            Deque<Integer> level = new ArrayDeque<>();
 
             for (int i = 0; i < levelSize; i++) {
                 TreeNode node = queue.poll();
-                list.add(node.val);
+                
+                if (leftToRight) {
+                    level.offerLast(node.val);
+                } 
+                else {
+                    level.offerFirst(node.val);
+                }
+
                 if (node.left != null) {
                     queue.offer(node.left);
                 }
@@ -39,10 +47,7 @@ class Solution {
                     queue.offer(node.right);
                 }
             }
-            if (!leftToRight) {
-                Collections.reverse(list);
-            }
-            result.add(list);
+            result.add(new ArrayList<>(level));
             leftToRight = !leftToRight;
         }
         return result; 
