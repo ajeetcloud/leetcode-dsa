@@ -30,10 +30,10 @@ class Solution {
 
         Node leftmost = root; // entry point of current level
 
-        while (leftmost != null) { // more levels to be covered
+        while (leftmost.left != null) { // more levels to be covered
             Node head = leftmost;
 
-            while (head != null && head.left != null) {
+            while (head != null) {
                 head.left.next = head.right; // Rule A - for same parent
                 if (head.next != null) {
                     head.right.next = head.next.left; // Rule B - for different parent
