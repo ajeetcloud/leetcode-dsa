@@ -27,34 +27,28 @@ class Solution {
         if (root == null) {
             return null;
         }
-        
-            Queue<Node> queue = new ArrayDeque<>();
-            queue.offer(root);
 
-            while (!queue.isEmpty()) {
-                int levelSize = queue.size();
-                Node prev = null; // every level starts fresh
+        Node leftmost = root; // entry point of current level
 
-                for (int i = 0; i < levelSize; i++) {
-                    // visit
-                    Node node = queue.poll();
-                    if (prev != null) {
-                        prev.next = node;
-                    }
-                    prev = node;
-                    if (node.left != null) {
-                        queue.offer(node.left);
-                    }
-                    if (node.right != null) {
-                        queue.offer(node.right);
-                    }
+        while (leftmost != null) { // more levels to be covered
+            Node head = leftmost;
+
+            while (head != null && head.left != null) {
+                head.left.next = head.right; // Rule A - for same parent
+                if (head.next != null) {
+                    head.right.next = head.next.left; // Rule B - for different parent
                 }
-
+                head = head.next;
             }
-
+            leftmost = leftmost.left; // go 1 level down
+        }
         return root;
     }
 }
+
+
+
+
 
 
 
