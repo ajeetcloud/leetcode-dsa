@@ -39,7 +39,7 @@ class Solution {
                     if (firstNodeOfLevel == null) {
                         firstNodeOfLevel = head.left;
                     } else {
-                        tail.next = head.next;
+                        tail.next = head.left;
                     }
                     tail = head.left;
                 }
