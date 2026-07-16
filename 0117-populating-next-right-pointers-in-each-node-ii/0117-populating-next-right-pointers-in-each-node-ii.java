@@ -27,25 +27,25 @@ class Solution {
         Node leftmost = root;
 
         while (leftmost != null) {
-
-            Node firstNodeOfLevel = null;
+            Node firstNode = null;
             Node tail = null;
 
-            // Current level Sweep
             Node head = leftmost;
-
             while (head != null) {
                 if (head.left != null) {
-                    if (firstNodeOfLevel == null) {
-                        firstNodeOfLevel = head.left;
+                    if (firstNode == null) {
+                        firstNode = head.left;
+                        tail = head.left;
                     } else {
                         tail.next = head.left;
                     }
                     tail = head.left;
                 }
+
                 if (head.right != null) {
-                    if (firstNodeOfLevel == null) {
-                        firstNodeOfLevel = head.right;
+                    if (firstNode == null) {
+                        firstNode = head.right;
+                        tail = head.right;
                     } else {
                         tail.next = head.right;
                     }
@@ -53,8 +53,7 @@ class Solution {
                 }
                 head = head.next;
             }
-            // starts next level
-            leftmost = firstNodeOfLevel;
+            leftmost = firstNode;
         }
         return root;
     }
