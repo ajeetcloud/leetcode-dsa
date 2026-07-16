@@ -23,37 +23,39 @@ class Node {
 
 class Solution {
     public Node connect(Node root) {
-        
+
         Node leftmost = root;
 
         while (leftmost != null) {
 
-            Node dummy = new Node();
-            Node tail = dummy;
+            Node firstNodeOfLevel = null;
+            Node tail = null;
+
+            // Current level Sweep
             Node head = leftmost;
 
             while (head != null) {
                 if (head.left != null) {
-                    tail.next = head.left;
-                    tail = tail.next;
+                    if (firstNodeOfLevel == null) {
+                        firstNodeOfLevel = head.left;
+                    } else {
+                        tail.next = head.next;
+                    }
+                    tail = head.left;
                 }
                 if (head.right != null) {
-                    tail.next = head.right;
-                    tail = tail.next;
+                    if (firstNodeOfLevel == null) {
+                        firstNodeOfLevel = head.right;
+                    } else {
+                        tail.next = head.right;
+                    }
+                    tail = head.right;
                 }
                 head = head.next;
             }
-            leftmost = dummy.next;
+            // starts next level
+            leftmost = firstNodeOfLevel;
         }
         return root;
     }
 }
-
-
-
-
-
-
-
-
-
