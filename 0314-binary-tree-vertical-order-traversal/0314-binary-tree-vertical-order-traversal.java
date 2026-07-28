@@ -14,6 +14,7 @@
  * }
  */
 record Pair(int col, TreeNode node) {}
+
 class Solution {
     public List<List<Integer>> verticalOrder(TreeNode root) {
 
