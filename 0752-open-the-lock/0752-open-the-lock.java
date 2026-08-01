@@ -6,7 +6,7 @@ class Solution {
         Set<String> visited = new HashSet<>(Arrays.asList(deadends));
         Queue<String> queue = new ArrayDeque<>();
 
-        if (visited.contains(target)) {
+        if (visited.contains(start)) {
             return -1;
         }
 
