@@ -1,4 +1,5 @@
-record Cell(int r, int c){}
+record Cell(int r, int c) {
+}
 
 class Solution {
     public int shortestDistance(int[][] grid) {
@@ -20,13 +21,13 @@ class Solution {
         }
 
         // BFS from every building
-         for (int i = 0; i < rows; i++) {
+        for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 if (grid[i][j] == 1) {
                     bfsFromBuilding(grid, i, j, totalDist, reachCount);
                 }
             }
-         }
+        }
 
         int minDistance = Integer.MAX_VALUE;
         for (int i = 0; i < rows; i++) {
@@ -38,10 +39,9 @@ class Solution {
             }
         }
 
-        return minDistance == Integer.MAX_VALUE ? -1: minDistance;
-        
-    }
+        return minDistance == Integer.MAX_VALUE ? -1 : minDistance;
 
+    }
 
     private void bfsFromBuilding(int[][] grid, int startR, int startC, int[][] totalDist, int[][] reachCount) {
 
@@ -55,7 +55,7 @@ class Solution {
         visited[startR][startC] = true;
 
         int distance = 0;
-        int[][] dirVector = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+        int[][] dirVector = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
 
         while (!queue.isEmpty()) {
             int levelSize = queue.size();
@@ -66,44 +66,21 @@ class Solution {
                 int r = currentCell.r();
                 int c = currentCell.c();
 
-                for (int[] dir: dirVector) {
+                for (int[] dir : dirVector) {
                     int nextR = r + dir[0];
                     int nextC = c + dir[1];
 
                     if (nextR >= 0 && nextR < rows && nextC >= 0 && nextC < cols
                             && !visited[nextR][nextC] && grid[nextR][nextC] == 0) {
-  
-                              totalDist[nextR][nextC] += distance;
-                              reachCount[nextR][nextC]++;
-                              queue.offer(new Cell(nextR, nextC));
-                              visited[nextR][nextC] = true;
+
+                        totalDist[nextR][nextC] += distance;
+                        reachCount[nextR][nextC]++;
+                        queue.offer(new Cell(nextR, nextC));
+                        visited[nextR][nextC] = true;
                     }
                 }
             }
         }
 
-
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
