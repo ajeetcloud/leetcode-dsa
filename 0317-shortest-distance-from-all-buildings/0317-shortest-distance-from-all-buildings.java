@@ -1,5 +1,4 @@
-record Cell(int r, int c) {
-}
+record Cell(int r, int c) {}
 
 class Solution {
     public int shortestDistance(int[][] grid) {
@@ -40,7 +39,6 @@ class Solution {
         }
 
         return minDistance == Integer.MAX_VALUE ? -1 : minDistance;
-
     }
 
     private void bfsFromBuilding(int[][] grid, int startR, int startC, int[][] totalDist, int[][] reachCount) {
