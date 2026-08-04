@@ -25,27 +25,26 @@ class Trie {
     }
     
     public boolean search(String word) {
-        TrieNode node = root;
-        for (int i = 0; i < word.length(); i++) {
-            int index = word.charAt(i) - 'a';
-            if (node.children[index] == null) {
-                return false;
-            }
-            node = node.children[index];
-        }
+        TrieNode node = findLastNode(word);
         return node != null && node.isEnd;
     }
     
     public boolean startsWith(String prefix) {
+        TrieNode node = findLastNode(prefix);
+        return node != null;
+    }
+
+    public TrieNode findLastNode(String str) {
+
         TrieNode node = root;
-        for (int i = 0; i < prefix.length(); i++) {
-            int index = prefix.charAt(i) - 'a';
+        for (int i = 0; i < str.length(); i++) {
+            int index = str.charAt(i) - 'a';
             if (node.children[index] == null) {
-                return false;
+                return null;
             }
             node = node.children[index];
         }
-        return node != null;
+        return node;
     }
 }
 
