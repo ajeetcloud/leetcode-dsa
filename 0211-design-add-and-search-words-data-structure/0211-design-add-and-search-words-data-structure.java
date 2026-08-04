@@ -10,9 +10,9 @@ class WordDictionary {
     public WordDictionary() {
         root = new TrieNode();
     }
-    
+
     public void addWord(String word) {
-        
+
         TrieNode node = root;
         for (int i = 0; i < word.length(); i++) {
             int index = word.charAt(i) - 'a';
@@ -23,9 +23,9 @@ class WordDictionary {
         }
         node.isEnd = true;
     }
-    
+
     public boolean search(String word) {
-        
+
         return dfs(word, 0, root);
     }
 
@@ -38,7 +38,7 @@ class WordDictionary {
         }
         char c = word.charAt(i);
         if (c == '.') {
-            for (TrieNode child: node.children) {
+            for (TrieNode child : node.children) {
                 boolean result = dfs(word, i + 1, child);
                 if (result) {
                     return true;
@@ -56,10 +56,3 @@ class WordDictionary {
  * obj.addWord(word);
  * boolean param_2 = obj.search(word);
  */
-
-
-
-
-
-
-
