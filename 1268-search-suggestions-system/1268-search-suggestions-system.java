@@ -57,18 +57,15 @@ class Trie {
             output.add(path.toString());
         }
         for (int i = 0; i < 26; i++) {
-        if (output.size() == LIMIT) {
-            return;
+            if (output.size() == LIMIT) {
+                return;
+            }
+            if (node.children[i] != null) {
+                path.append((char) (i + 'a'));
+                collect(node.children[i], path, output);
+                path.deleteCharAt(path.length() - 1);
+            }
         }
-        if (node.children[i] != null) {
-            path.append((char) (i + 'a'));
-            collect(node.children[i], path, output);
-            path.deleteCharAt(path.length() - 1);
-        }
-
-        }
-
-
     }
 
     public List<List<String>> getResult() {
