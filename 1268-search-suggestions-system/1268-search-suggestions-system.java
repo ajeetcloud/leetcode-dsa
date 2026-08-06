@@ -15,7 +15,7 @@ class Trie {
     }
 
     public void addWord(String word) {
-
+        
         TrieNode node = root;
         for (int i = 0; i < word.length(); i++) {
             int index = word.charAt(i) - 'a';
