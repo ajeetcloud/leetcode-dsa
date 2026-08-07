@@ -40,12 +40,12 @@ class Solution {
             found.add(next.word);
             next.word = null;
         }
-        
+
+        board[r][c] = '#';
         for (int[] dir: DIRECTIONS) {
-            board[r][c] = '#';
             dfs(board, r + dir[0], c + dir[1], next, found);
-            board[r][c] = ch;
         }
+        board[r][c] = ch;
         
     }
 
