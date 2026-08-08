@@ -18,17 +18,18 @@ class Solution {
             }
         }
         
-        int count = 0;
+        int provinces = 0;
         for (int i = 0; i < n; i++) {
             if (i == parent[i]) {
-                count++;
+                provinces++;
             }
         }
-        return count;
+        return provinces;
     }
 
     private int find(int x) {
         while (parent[x] != x) {
+            parent[x] = parent[parent[x]];
             x = parent[x];
         }
         return x;
