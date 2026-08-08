@@ -11,8 +11,8 @@ class Solution {
         }
 
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                if (j > i && isConnected[i][j] == 1) {
+            for (int j = i + 1; j < n; j++) {
+                if (isConnected[i][j] == 1) {
                     union(i, j);
                 }
             }
