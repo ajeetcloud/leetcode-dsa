@@ -1,13 +1,13 @@
 class Solution {
 
-    private int[] cities;
+    private int[] parent;
 
     public int findCircleNum(int[][] isConnected) {
         int n = isConnected.length;
 
-        cities = new int[n];
+        parent = new int[n];
         for (int i = 0; i < n; i++) {
-            cities[i] = i;
+            parent[i] = i;
         }
 
         for (int i = 0; i < n; i++) {
@@ -20,7 +20,7 @@ class Solution {
         
         int count = 0;
         for (int i = 0; i < n; i++) {
-            if (i == cities[i]) {
+            if (i == parent[i]) {
                 count++;
             }
         }
@@ -28,8 +28,8 @@ class Solution {
     }
 
     private int find(int x) {
-        while (cities[x] != x) {
-            x = cities[x];
+        while (parent[x] != x) {
+            x = parent[x];
         }
         return x;
     }
@@ -39,7 +39,7 @@ class Solution {
         int cityB = find(b);
 
         if (cityA != cityB) {
-            cities[cityA] = cityB;
+            parent[cityA] = cityB;
         }
 
     }
