@@ -5,11 +5,9 @@ class Solution {
     public int[] findRedundantConnection(int[][] edges) {
         
         parent = new int[edges.length + 1];
-
         for (int i = 1; i <= edges.length; i++) {
             parent[i] = i;
         }
-
         for (int[] edge: edges) {
             int a = edge[0];
             int b = edge[1];
