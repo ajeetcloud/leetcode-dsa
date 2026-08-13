@@ -18,7 +18,7 @@ class Solution {
         for (int[] connection: connections) {
             union(connection[0],connection[1]);
         }
-        return count -1;
+        return count - 1;
     }
 
     private int find(int x) {
