@@ -3,7 +3,7 @@ class Solution {
 
         Map<String, List<String>> graph = new HashMap<>();
         Map<String, String> emailToName = new HashMap<>();
-
+ 
         // Phase 1: Build undirected adjacency map for emails
         for (List<String> account: accounts) {
             String name = account.get(0);
